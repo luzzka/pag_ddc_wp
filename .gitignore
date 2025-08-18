@@ -1,0 +1,15 @@
+# Ignorar uploads (archivos pesados)
+wp-content/uploads/
+
+# Configuración local
+wp-config.php
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Logs y temporales
+*.log
+*.tmp
+*.bak
+*.swp

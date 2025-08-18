@@ -1,0 +1,243 @@
+.mdl-layout__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mdl-layout__content .page-content {
+    width: 100%;
+}
+
+/*img {*/
+    /*width: 64px;*/
+    /*height: 64px;*/
+    /*border-radius: 32px;*/
+    /*display: block;*/
+    /*margin: 0 auto;*/
+/*}*/
+
+form {
+    padding: 32px;
+    text-align: center;
+}
+
+form > .mdl-textfield, #login-page form > .mdl-button, #login-page form > .mdl-checkbox {
+    display: block;
+    margin: 0 auto;
+}
+
+form > .mdl-checkbox {
+    width: 300px;
+}
+
+form .error {
+    color: #f44336;
+    text-align: center;
+    margin-top: 20px;
+}
+
+label {
+    text-align: left;
+    /*margin-bottom: 16px;*/
+}
+
+button {
+    margin-top: 16px;
+}
+
+.adjuntos>div {
+    position: relative;
+}
+
+.adjuntos>div:hover {
+    /*border: 1px solid rgb(63,81,181);*/
+    /*box-shadow: 2px 2px 3px 0 rgb(63,81,181);*/
+    border: 1px solid rgb(121,85,72);
+    box-shadow: 2px 2px 3px 0 rgb(121,85,72);
+}
+
+.adjuntos .eliminar {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    /*display: block;*/
+    border: none;
+    background: #ffffff;
+    /*width: 21px;*/
+    /*height: 21px;*/
+    border-radius: 2px;
+    text-align: center;
+    line-height: 20.999px;
+    /*color: rgb(63,81,181);*/
+    color: rgb(121,85,72);
+    margin: 0;
+}
+
+.adjuntos .eliminar:hover{
+    cursor: pointer;
+    color: #f44336;
+}
+
+.adjuntos > div {
+    margin: 10px 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    box-shadow: 2px 2px 3px 0 #c3c3c3;
+    padding: 17px;
+}
+
+.adjuntos > div > div {
+    display: inline-block;
+}
+
+.nuevo-field {
+    text-align: right;
+}
+
+.nuevo-field button {
+    /*color: rgb(63,81,181);*/
+    color: rgb(121,85,72);
+    border: none;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    background: #ffffff;
+    border-radius: 2px;
+}
+
+.nuevo-field button:hover {
+    cursor: pointer;
+    color: #4caf50;
+}
+
+.adjuntos input {
+    /*margin: 4px 0;*/
+    /*margin-right: 10px;*/
+    /*padding: 8px;*/
+}
+
+select {
+    padding: 4px;
+    color: gray;
+}
+
+
+
+.two-fields {
+    width:100%;
+}
+.two-fields .input-group {
+    width:100%;
+}
+.two-fields input {
+    width:50% !important;
+}
+
+/* Estilos input file */
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+/*.inputfile + label {*/
+    /*font-size: 1.25em;*/
+    /*font-weight: 700;*/
+    /*color: white;*/
+    /*background-color: #3f51b5;*/
+    /*display: inline-block;*/
+/*}*/
+
+/*.inputfile:focus + label,*/
+/*.inputfile + label:hover {*/
+    /*background-color: #394482;*/
+/*}*/
+
+/*.inputfile + label {*/
+    /*cursor: pointer; !* "hand" cursor *!*/
+/*}*/
+
+/*.inputfile:focus + label {*/
+    /*outline: 1px dotted #000;*/
+    /*outline: -webkit-focus-ring-color auto 5px;*/
+/*}*/
+
+/*.inputfile + label * {*/
+    /*pointer-events: none;*/
+/*}*/
+
+.js .inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    max-width: 80%;
+    /* font-size: 1.25rem; */
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-flex;
+    overflow: hidden;
+    padding: 8px 6px;
+}
+
+.no-js .inputfile + label {
+    display: none;
+}
+
+.inputfile:focus + label,
+.inputfile.has-focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label * {
+    /* pointer-events: none; */
+    /* in case of FastClick lib use */
+}
+
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    /* 4px */
+    margin-right: 0.25em;
+    /* 4px */
+}
+
+.inputfile-2 + label {
+    /*color: #3f51b5;*/
+    color: rgb(121,85,72);
+    /*color: #d3394c;*/
+    border: 2px solid currentColor;
+}
+
+.inputfile-2:focus + label,
+.inputfile-2.has-focus + label,
+.inputfile-2 + label:hover {
+    /*color: #722040;*/
+    color: #000000;
+}
+
+/* estilo sin documento - sin enlace */
+
+.sin-enlace {
+    color:#b5b5b5 !important;
+}
+
+.boton-top-d {
+    position: absolute !important;
+    right: 300px;
+    width: auto !important;
+    margin-top: -10px !important;
+}

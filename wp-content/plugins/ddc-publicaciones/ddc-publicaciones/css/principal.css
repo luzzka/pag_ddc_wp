@@ -1,0 +1,151 @@
+select {
+    height: 36px;
+}
+
+button:not(.mdl-button) {
+    border: none;
+    background: transparent;
+    /*color: #3f51b5;*/
+    color: #795548;
+}
+
+#formulario-criterio {
+    width: 100%;
+    display: block;
+    border-bottom: 1px solid #e1e1e1;
+    padding-bottom: 15px;
+}
+
+/*#barra-de-busqueda {*/
+    /*button {*/
+        /*position: relative;*/
+        /*display: inline-block;*/
+        /*top: initial;*/
+        /*right: initial;*/
+        /*left: initial;*/
+        /*bottom: initial;*/
+        /*font-size: 10px;*/
+
+        /*i {*/
+            /*font-size: 16px;*/
+        /*}*/
+    /*}*/
+
+    /*.mdl-textfield {*/
+        /*top: 4px;*/
+    /*}*/
+/*}*/
+
+
+/* Boton Editar */
+button.editar {
+    right: 36px;
+}
+button.editar:hover {
+    cursor: pointer;
+    color: #f9ab48;
+}
+
+/* Boton Enlace */
+a.enlace {
+    right: 36px;
+}
+a.enlace:hover {
+    cursor: pointer;
+    color: #008bf9;
+}
+
+/* Boton PDF */
+a.pdf {
+    right: 36px;
+}
+a.pdf:hover {
+    cursor: pointer;
+    color: #f30606;
+}
+
+/* Boton Eliminar */
+.eliminar.inferior {
+    background: transparent;
+    color: #795548;
+    border: none;
+    cursor: pointer;
+}
+
+.eliminar.inferior:hover {
+    cursor: pointer;
+    color: #f30606;
+}
+
+/* Boton Eliminar Doc */
+.eliminardoc {
+    background: transparent;
+    color: #795548;
+    border: none;
+    cursor: pointer;
+}
+
+.eliminardoc:hover {
+    cursor: pointer;
+    color: #f30606;
+}
+
+/* DIRECCION */
+.direnlace {
+    padding-top: 12px;
+}
+
+/* Boton publicado */
+.publicado.inferior {
+    background: transparent;
+    color: rgb(2, 169, 0);
+    border: none;
+    cursor: pointer;
+}
+
+/* Boton nopublicado */
+.nopublicado.inferior {
+    background: transparent;
+    color: rgb(183, 9, 0);
+    border: none;
+    cursor: pointer;
+}
+
+/* Estilo de los enlaces */
+a {
+    color: black;
+    text-decoration: none;
+}
+
+/*a:hover {*/
+    /*text-decoration: underline;*/
+/*}*/
+
+
+.publicado2.inferior {
+    background: transparent;
+    color: rgb(2, 169, 0);
+    border: none;
+    /*cursor: pointer;*/
+}
+
+/* Estilos Input */
+
+/*.mdl-button--file input {*/
+    /*cursor: pointer;*/
+    /*height: 100%;*/
+    /*right: 0;*/
+    /*opacity: 0;*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*width: 300px;*/
+    /*z-index: 4;*/
+/*}*/
+
+/*.mdl-textfield--file .mdl-textfield__input {*/
+    /*box-sizing: border-box;*/
+    /*width: calc(100% - 32px);*/
+/*}*/
+/*.mdl-textfield--file .mdl-button--file {*/
+    /*right: 0;*/
+/*}*/

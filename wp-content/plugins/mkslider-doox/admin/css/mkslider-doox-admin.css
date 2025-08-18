@@ -1,0 +1,109 @@
+.mkclean:before,
+.mkclean:after
+{
+  content: " ";
+  display: table;
+}
+
+.mkclean:after
+{
+  clear: both;
+}
+
+.mkcontainer{
+	width: 100%;
+	padding: 10px 30px;
+	box-sizing: border-box;
+}
+.mkprincipal{
+	padding-top: 30px;
+}
+.mkprincipal .mkleft, .mksecundario .mkleft{
+	width: 35%;
+	float: left;
+	box-sizing: border-box;
+}
+.mkprincipal .mkright, .mksecundario .mkright{
+	width: 65%;
+	float: left;
+	box-sizing: border-box;
+}
+.mkprincipal .mkleft .mkctn, .mkprincipal .mkright .mkctn, .mksecundario .mkleft .mkctn, .mksecundario .mkright .mkctn{
+	padding:15px 20px;
+}
+.mkprincipal .mkleft .mkctn .butNuevo, .mkprincipal .mkleft .mkctn .divListSld{
+	float: left;
+}
+.mkprincipal .mkleft .mkctn .butNuevo{
+	width: 120px;
+}
+.mkprincipal .mkleft .mkctn .divListSld{
+	margin-left: 15px;
+}
+table .tableTitle{
+	text-align: center;
+	font-weight: 600;
+	font-size: 1.2em;
+}
+
+.mkhidden{
+	display: none;
+}
+table.widefat{
+	padding-bottom: 10px;
+}
+table.widefat tbody th{
+	width: 250px;
+}
+.mnserror{
+	color: #cd4236;
+	font-weight: 550;
+	text-align: left;
+	display: none;
+}
+.mksecundario{
+	margin-top: 50px;
+	min-height: 50px;
+	padding-top: 20px;
+	border-top: 1px solid #FFFFFF;
+	background-color: #fff;
+}
+.mensajeCentral{
+	text-align: center;
+}
+.itemslider{
+	width: 45% !important;
+	float: left;
+	margin: 10px;
+	position: relative;
+}
+.itemslider img{
+	width: 100% !important;
+}
+.itemslider .opts{
+	position: absolute;
+	right: 0;
+	top:5px;
+	text-align: right;
+}
+.itemslider .opts .mkeditar, .itemslider .opts .mkeliminar, .itemslider .opts .mkeditarsidebar, .itemslider .opts .mkeliminarsidebar{
+	display: inline-block;
+	width: 30px;
+	height: 25px;
+	text-align:center;
+	font-size: 1.2em;
+	background-color: #fff;
+	margin-right: 10px;
+}
+.itemslider .opts .mkeditar:hover, .itemslider .opts .mkeliminar:hover, .itemslider .opts .mkeditarsidebar:hover, .itemslider .opts .mkeliminarsidebar:hover{
+	cursor: pointer;
+}
+.itemslider h4.titulo{
+	color:#fff;
+	background-color: #111;
+	padding: 10px;
+	position: absolute;
+	bottom: 0;
+	font-size: 1.2em;
+	font-weight: 650;
+}

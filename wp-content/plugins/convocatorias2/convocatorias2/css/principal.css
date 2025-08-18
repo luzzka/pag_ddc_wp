@@ -1,0 +1,222 @@
+select {
+    height: 36px;
+}
+
+button:not(.mdl-button) {
+    border: none;
+    background: transparent;
+    /*color: #3f51b5;*/
+    color: #795548;
+}
+
+#formulario-convocatorias2 {
+    width: 100% !important;
+    display: block;
+    border-bottom: 1px solid #e1e1e1;
+    padding-bottom: 15px;
+}
+
+/*#barra-de-busqueda {*/
+/*button {*/
+/*position: relative;*/
+/*display: inline-block;*/
+/*top: initial;*/
+/*right: initial;*/
+/*left: initial;*/
+/*bottom: initial;*/
+/*font-size: 10px;*/
+
+/*i {*/
+/*font-size: 16px;*/
+/*}*/
+/*}*/
+
+/*.mdl-textfield {*/
+/*top: 4px;*/
+/*}*/
+/*}*/
+
+/* Boton Anadir */
+button.anadir {
+    right: 36px;
+    border: none;
+    background: transparent;
+}
+
+button.anadir:hover {
+    cursor: pointer;
+    color: rgb(2, 169, 0);
+}
+
+/* Boton Ordenar */
+button.ordenar {
+    right: 36px;
+    border: none;
+    background: transparent;
+}
+
+button.ordenar:hover {
+    cursor: pointer;
+    color: #0051f9;
+}
+
+/* Boton Anadir Proceso */
+button.anadir-proceso {
+    right: 36px;
+    border: none;
+    background: transparent;
+}
+
+button.anadir-proceso:hover {
+    cursor: pointer;
+    color: rgb(2, 169, 0);
+}
+
+/* Boton Editar */
+button.editar {
+    right: 36px;
+}
+
+button.editar:hover {
+    cursor: pointer;
+    color: #f9ab48;
+}
+
+/* Boton Editar Procesos*/
+button.editar-procesos {
+    right: 36px;
+}
+
+button.editar-procesos:hover {
+    cursor: pointer;
+    color: #f9ab48;
+}
+
+/* Boton Fe de Erratas */
+button.add-fde {
+    right: 36px;
+}
+
+button.add-fde:hover {
+    cursor: pointer;
+    color: #f9ab48;
+}
+
+/* Boton Eliminar */
+.eliminar.inferior {
+    background: transparent;
+    color: #795548;
+    border: none;
+    cursor: pointer;
+}
+
+.eliminar.inferior:hover {
+    cursor: pointer;
+    color: #f30606;
+}
+
+/* Boton Eliminar Doc */
+.eliminardoc {
+    background: transparent;
+    color: #795548;
+    border: none;
+    cursor: pointer;
+}
+
+.eliminardoc:hover {
+    cursor: pointer;
+    color: #f30606;
+}
+
+/* DIRECCION */
+.direnlace {
+    padding-top: 12px;
+}
+
+/* Boton publicado */
+.publicado.inferior {
+    background: transparent;
+    color: rgb(2, 169, 0);
+    border: none;
+    cursor: pointer;
+}
+
+/* Boton nopublicado */
+.nopublicado.inferior {
+    background: transparent;
+    color: rgb(183, 9, 0);
+    border: none;
+    cursor: pointer;
+}
+
+/* Estilo de los enlaces */
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.publicado2.inferior {
+    background: transparent;
+    color: rgb(2, 169, 0);
+    border: none;
+    /*cursor: pointer;*/
+}
+
+.selected_row {
+    background-color: #e0e0e0 !important;
+}
+
+.add-convocatoria {
+    vertical-align: super !important;
+}
+
+.contenedor-tabla {
+    margin-top: 10px;
+    padding-bottom: 12px;
+    overflow-x: scroll;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.cabecera {
+    margin-bottom: -18px;
+    padding-top: 8px;
+}
+
+.cabecera button {
+    margin-left: 10px;
+}
+
+.tabla {
+    text-align: center;
+}
+
+.cabecera-procesos {
+    margin-bottom: -2px;
+    padding-top: 8px;
+}
+
+.cabecera-procesos form {
+    text-align: right;
+    padding: 0 12px 0 0;
+    float: right;
+}
+
+.cabecera-procesos button {
+    margin-left: 12px;
+}
+
+.mdl-grid form h5 {
+    margin-bottom: -42px !important;
+}
+
+/*.nro-conv {*/
+    /*color: #5e2129;*/
+    /*font-weight: normal;*/
+    /*padding: 5px 2px 5px 2px;*/
+    /*font-size: 1.4em;*/
+/*}*/

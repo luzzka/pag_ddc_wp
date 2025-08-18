@@ -1,0 +1,37 @@
+/*
+ Theme Name:   ColorMag Child
+ Template:     colormag
+ Version:      1.1.5
+*/
+/* Estilos personalizados del tema hijo */
+
+/* ===================================================================
+   ESTILOS FORZADOS PARA ACORDEÓN DE PUBLICACIONES
+   =================================================================== */
+
+/* padding inicial colapsado, no quitar este */
+section.accordion_publi + div.panel_publi {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out !important;
+    border: none !important; /* Reseteamos bordes por si acaso */
+}
+
+/* padding para cuando el panel está abierto. */
+section.accordion_publi.active + div.panel_publi {
+    /*padding-top: 5px !important;*/
+    padding-bottom: 400px !important; /* quitar esto cuando se muestren bien las imagenes de publicaciones */
+    border-bottom: 1px solid #e0e0e0 !important; /* Le damos un borde bonito */
+}
+
+/* Pequeños detalles para el título clickeable */
+section.accordion_publi {
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+section.accordion_publi:hover {
+    background-color: #f5f5f5; /* Efecto hover sutil */
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Comunicado</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/principal.css">
+
+    <link rel="stylesheet" href="css/alertify.min.css">
+    <link rel="stylesheet" href="css/alertify.default.min.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.brown-orange.min.css" />
+
+</head>
+<body>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--2-col mdl-cell--1-col-tablet"></div>
+
+    <form id="formulario" class="mdl-cell mdl-cell--8-col mdl-cell--6-col-tablet mdl-color--white mdl-shadow--2dp" action="store_comunicado.php" enctype="multipart/form-data" method="post">
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="titulo-comunicado" name="titulo-comunicado">
+            <label class="mdl-textfield__label" for="titulo-comunicado">Título de Comunicado</label>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield">
+            <textarea class="mdl-textfield__input" type="text" rows= "3" id="detalle" name="detalle" ></textarea>
+            <label class="mdl-textfield__label" for="detalle">Detalle del Comunicado...</label>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <label >Estado de Publicaci&oacute;n</label>
+            <select name="estado" id="estado">
+                <option value="1">PUBLICADO</option>
+                <option value="0">NO PUBLICADO</option>
+            </select>
+        </div>
+
+        <hr>
+
+        <div class="nuevo-field">
+            <button id="add">
+                <i class="material-icons">add_circle_outline</i>
+            </button>
+            <div class="mdl-tooltip" for="add">
+                A&ntilde;adir
+            </div>
+        </div>
+
+        <div class="adjuntos">
+        </div>
+
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">
+            Guardar
+        </button>
+        &nbsp;
+        <button id="cancelar" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            Cancelar
+        </button>
+    </form>
+
+    <div class="mdl-cell mdl-cell--2-col mdl-cell--1-col-tablet"></div>
+</div>
+
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/alertify.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+        var i = 0;
+
+        var adjuntosDIV = $('.adjuntos');
+
+        function inp (){
+            // INPUTS TYPE FILE
+            var inputs = document.querySelectorAll( '.inputfile' );
+            Array.prototype.forEach.call( inputs, function( input )
+            {
+                var label	 = input.nextElementSibling,
+                    labelVal = label.innerHTML;
+
+                input.addEventListener( 'change', function( e )
+                {
+                    var fileName = '';
+                    if( this.files && this.files.length > 1 )
+                        fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+                    else
+                        fileName = e.target.value.split( '\\' ).pop();
+
+                    if( fileName )
+                        label.querySelector( 'span' ).innerHTML = fileName;
+                    else
+                        label.innerHTML = labelVal;
+                });
+            });
+        }
+
+        $('#add').click(function (e) {
+
+            e.preventDefault();
+
+            plantilla2 = '<div><input id="enlace'+i+'" type="file" name="enlace[]" accept="application/pdf" class="inputfile inputfile-2" data-multiple-caption="{count} files selected" /><label for="enlace'+i+'"><i class="material-icons">file_upload</i><span>Elije el Enlace</span></label><button id="'+i+'" class="eliminar" ><i class="material-icons">cancel</i></button><span class="mdl-tooltip" for="'+i+'">Eliminar</span></div>';
+
+            var el = $(plantilla2);
+
+            el.find('.eliminar').click(function(e) {
+
+                e.preventDefault();
+
+                alertify.confirm(
+                    'Web - DDC Cusco',
+                    '&iquest;Est&aacute; seguro de retirar este elemento?',
+                    function() {
+                        el.remove();
+                        alertify.success('Elemento Retirado');
+                    },
+                    function(){
+                        // -- NO
+                    }).set('maximizable', false)
+                    .set('labels', {ok:'Si', cancel:'No'});
+
+            });
+
+            el.appendTo(adjuntosDIV);
+
+            inp();
+
+            i++;
+
+            componentHandler.upgradeDom();
+
+        }).click();
+
+        $('#cancelar').click(function(e) {
+            e.preventDefault();
+
+            alertify.confirm(
+                'Web - DDC Cusco',
+                '&iquest;Est&aacute; seguro de descartar este formulario?',
+                function() {
+                    window.location.replace("index.php");
+                },
+                function(){
+                    //                         alertify.error('Cancel')
+                    //                         return false;
+                }).set('maximizable', false)
+                .set('labels', {ok:'Si', cancel:'No'});
+
+        });
+
+    });
+</script>
+</body>
+</html>
