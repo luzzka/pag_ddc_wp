@@ -276,7 +276,8 @@ function mi_tema_hijo_cargar_codigo_personalizado() {
 
         // construir la funcion, para escoger publicaciones manualmente, con url e imagen
         public function __construct() {
-            $this->widget_cssclass    = 'cm-widget-custom-publications';
+            //$this->widget_cssclass    = 'cm-widget-custom-publications';
+            $this->widget_cssclass    = 'cm-featured-posts cm-featured-posts--style-1'; // Clase CSS principal propia y única
             $this->widget_description = esc_html__( 'Agregar hasta 4 publicaciones manualmente.', 'colormag' );
             $this->widget_name        = esc_html__( 'DRC: Publicaciones', 'colormag' );
 
@@ -305,32 +306,31 @@ function mi_tema_hijo_cargar_codigo_personalizado() {
         }
 
         public function widget( $args, $instance ) {
-            /*$titulo_seccion = apply_filters( 'widget_title', isset( $instance['titulo_seccion'] ) ? $instance['titulo_seccion'] : '' );
 
-            $this->widget_start( $args );
-
-            if ( ! empty( $titulo_seccion ) ) {
-                echo $args['before_title'] . esc_html( $titulo_seccion );
-                echo '<a class="view-all-link" href="/publicaciones" title="Ver todas las publicaciones" target="_blank">Ver Publicaciones &gt;&gt;</a>';
-                echo $args['after_title'];
-            }*/
             $titulo_seccion = isset( $instance['titulo_seccion'] ) ? $instance['titulo_seccion'] : '';
 
             $this->widget_start( $args );
 
             if ( ! empty( $titulo_seccion ) ) {
-                echo '<div class="cm-title-wrap">';
-                //$this->widget_title( $titulo_seccion );
+                // Renderiza el h3 nativo de ColorMag pero lo capturamos
+                ob_start();
                 $this->widget_title( 
-                    $titulo_seccion, // título real
-                    'latest',        // valor por defecto
-                    0                // categoría nula
+                    $titulo_seccion, // título
+                    'latest',        // tipo (si tu helper lo pide)
+                    0                // categoría (si aplica)
                 );
-                echo '<a class="view-all-link" href="/publicaciones" target="_blank">Ver Publicaciones &gt;&gt;</a>';
-                echo '</div>';
-            }
-            /* --------------------------*/
+                $title_html = ob_get_clean();
 
+                // Link "ver más" (puedes parametrizarlo si quieres)
+                $link_html = '<a class="view-all-link" href="' . esc_url( home_url( '/publicaciones/' ) ) . '" target="_blank">Ver Publicaciones &raquo;</a>';
+
+                // Inserta el enlace antes del cierre del h3
+                if ( false !== strpos( $title_html, '</h3>' ) ) {
+                    $title_html = str_replace( '</h3>', $link_html . '</h3>', $title_html );
+                }
+
+                echo $title_html;
+            }
 
             echo '<div class="cm-posts">';
 
