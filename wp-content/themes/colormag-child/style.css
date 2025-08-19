@@ -35,3 +35,533 @@ section.accordion_publi {
 section.accordion_publi:hover {
     background-color: #f5f5f5; /* Efecto hover sutil */
 }
+
+
+/* =======================================
+   MENÚ PRINCIPAL CON CAMBIOS
+   ======================================= */
+
+/* estilos generales de cada opción del menú principal */
+.cm-primary-nav li {
+	position: relative;
+	font-family: "Montserrat", sans-serif; /* tipografía moderna */
+	font-weight: 400; /* grosor intermedio, más legible */
+	padding: 12px 20px; /* espacio interno limpio */
+}
+
+/* estilo de los enlaces principales */
+.cm-primary-nav a {
+	display: flex;
+	flex: 1;
+	color: #000000;
+	font-size: 13px;
+	font-weight: 500;
+	text-transform: uppercase;
+	line-height: 2;
+	letter-spacing: 0.5px; /* espaciado entre letras */
+	transition: all 0.3s ease; /* animación suave */
+}
+
+/* oculta el menú por defecto que genera WordPress */
+.cm-primary-nav li.default-menu {
+	display: none;
+}
+
+/* ícono de la casita */
+.cm-primary-nav .cm-home-icon a {
+	padding: 8px;
+	border-radius: 50%; /* estilo circular */
+	transition: background 0.3s ease;
+}
+
+.cm-primary-nav .cm-home-icon a:hover {
+	background-color: #207daf;
+}
+
+/* hover en enlaces principales */
+.cm-primary-nav a:hover {
+	color: #420101;
+	transform: translateY(-2px); /* efecto de elevación */
+}
+
+/* estado activo o hover del ítem del menú */
+.cm-primary-nav ul li.current-menu-item,
+.cm-primary-nav ul li.current_page_ancestor,
+.cm-primary-nav ul li.current-menu-ancestor,
+.cm-primary-nav ul li.current_page_item,
+.cm-primary-nav ul li:hover,
+.cm-primary-nav ul li.focus {
+	background-color: #ebebeb;
+}
+/* estado activo o hover de los ítems dentro de submenús */
+.cm-primary-nav ul li ul li:hover,
+.cm-primary-nav ul li ul li.focus,
+.cm-primary-nav ul li ul li.current-menu-item,
+.cm-primary-nav ul li ul li.current_page_item {
+    background-color: #300202; /* color para submenús */
+}
+/* estilo general de submenús */
+.cm-primary-nav .sub-menu,
+.cm-primary-nav .children {
+	background-color: #300202;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+/* comportamiento de submenús en hover/focus */
+.cm-primary-nav ul li:hover > ul,	
+.cm-primary-nav ul li.focus > ul {
+	left: 0;
+	display: block;
+	animation: sweepDown 0.3s ease forwards; /* animación de barrido hacia abajo */
+}
+
+
+
+.cm-primary-nav ul li ul li {
+	float: none;
+}
+
+/* enlaces dentro del submenú */
+.cm-primary-nav ul li ul li a {
+    padding: 6px 12px;
+	border-top: none;
+	float: none;
+	font-size: 11px; 
+	height: 100%;
+	color: #f1f5f9;
+	display: block;
+	text-align: left;
+	text-transform: none;
+	word-break: break-word;
+	transition: background 0.3s ease;
+}
+
+/* hover dentro del submenú */
+.cm-primary-nav ul li ul li:hover {
+	color: #fff;
+	background-color: #300202;
+}
+
+.cm-primary-nav ul li.current-menu-item ul li a:hover {
+	color: #fff;
+	background-color: #3b82f6;
+}
+
+/* posición de sub-submenús */
+.cm-primary-nav ul li ul li ul {
+	left: 220px;
+	top: 0;
+}
+
+/* ocultar el select de menú responsivo */
+.cm-primary-nav select {
+	display: none;
+}
+
+/* contenedor principal del menú */
+#cm-primary-nav {
+	position: relative;
+	z-index: 999;
+	background: #e9e9e9;
+	box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+	border-top: 2px solid #420101;
+	border-radius: 0 0 12px 12px; /* esquinas redondeadas abajo */
+}
+
+#cm-primary-nav .cm-row {
+	position: relative;
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+}
+
+/* animación de barrido hacia abajo en submenús */
+@keyframes sweepDown {
+  from {
+    opacity: 0;
+    transform: scaleY(0);   /* contraído verticalmente */
+    transform-origin: top;  /* desde arriba */
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);   /* expandido */
+    transform-origin: top;
+  }
+}
+
+
+/* ============================================================
+   ÍCONO DE INICIO
+   ============================================================ */
+.cm-home-icon.front_page_on {
+	background-color: #207daf; /* Fondo azul al estar activo */
+}
+
+.cm-home-icon svg {
+	display: block;
+	fill: #fff; /* Icono en blanco */
+	font-size: 32px;
+	transition: transform 0.3s ease; /* Animación suave al interactuar */
+}
+
+.cm-home-icon svg:hover {
+	transform: scale(1.1); /* Pequeño zoom al pasar el mouse */
+}
+
+/* ============================================================
+   MENÚ PRINCIPAL Y CONTENEDOR
+   ============================================================ */
+.sticky-wrapper.is-sticky .cm-primary-nav .cm-home-icon a,
+.sticky-wrapper .cm-primary-nav .cm-home-icon a {
+	padding: 8px;
+}
+
+.cm-menu-primary-container {
+	flex-grow: 1;
+	flex-basis: 70%; /* Mantiene el menú más ancho que el logo */
+}
+
+/* Oculta submenús por defecto */
+.cm-menu-primary-container .sub-menu {
+	display: none;
+	background-color: #4d0808; /* Mejora: fondo oscuro diferenciado */
+	border-radius: 6px; /* Bordes más suaves */
+	padding: 0px 0;
+	box-shadow: 0px 4px 12px rgba(0,0,0,0.2); /* Sombras para resaltar */
+}
+
+.cm-menu-primary-container .sub-menu li a {
+	color: #ffffff; 
+	padding: 0;
+	font-size: 8px;
+	transition: background 0.3s ease, padding-left 0.3s ease;
+}
+
+.cm-menu-primary-container .sub-menu li a:hover {
+	background-color: #300202; /* Azul al hover */
+	padding-left: 28px; /* Efecto de desplazamiento */
+}
+
+li.default-menu {
+	display: none;
+}
+
+/* ============================================================
+   TOGGLE DE SUBMENÚS (flecha a la derecha)
+   ============================================================ */
+.cm-sub-toggle {
+	position: absolute;
+	right: 15px;
+	top: 12px;
+	display: block;
+	text-align: center;
+	height: 24px;
+	width: 24px;
+	color: #fff;
+	cursor: pointer;
+	line-height: 21px;
+	transition: transform 0.3s ease;
+}
+
+.cm-sub-toggle .fa {
+	color: #fff;
+}
+
+/* Flecha rota cuando el submenú está abierto */
+.cm-sub-toggle.active {
+	transform: rotate(180deg);
+}
+
+/* ============================================================
+   LOGO EN EL MENÚ
+   ============================================================ */
+.menu-logo a {
+	padding: 0;
+}
+
+.menu-logo a:hover {
+	background-color: unset;
+}
+
+.menu-logo img {
+	width: auto;
+	margin-bottom: 0;
+}
+
+/* ============================================================
+   TOGGLE MENU (Móvil)
+   ============================================================ */
+.top-menu-toggle {
+	display: none;
+	cursor: pointer;
+}
+
+.cm-header .cm-menu-toggle[aria-expanded="true"] .cm-icon--bars {
+	display: none;
+}
+
+.cm-header .cm-menu-toggle[aria-expanded="false"] .cm-icon--x-mark {
+	display: none;
+}
+
+.cm-header .cm-menu-toggle {
+	color: #fff;
+	margin: 0;
+	text-align: center;
+	font-family: "Open Sans", serif;
+	padding-bottom: 0;
+	line-height: 1.2;
+	width: 48px;
+	height: 48px;
+	transition: transform 0.3s ease;
+}
+
+.cm-header .cm-menu-toggle:hover {
+	color: #fff;
+	transform: scale(1.1); /* Zoom al pasar el mouse */
+}
+
+.cm-header .cm-menu-toggle svg {
+	width: 48px;
+	height: 48px;
+	fill: #fff;
+	padding: 8px;
+}
+
+.cm-header .cm-menu-toggle svg:hover {
+	color: #fff;
+}
+
+/* ============================================================
+   MENÚ MÓVIL
+   ============================================================ */
+.cm-header .cm-mobile-nav ul.menu-scrollbar {
+	overflow-y: scroll;
+	width: 100%;
+}
+
+.cm-header .cm-mobile-nav li:hover, 
+.cm-header .cm-mobile-nav li.current-page-ancestor, 
+.cm-header .cm-mobile-nav li.current-menu-ancestor, 
+.cm-header .cm-mobile-nav li.current-page-item, 
+.cm-header .cm-mobile-nav li.current-menu-item {
+	color: #fff;
+	background-color: #207daf; /* Azul activo */
+}
+
+.cm-header .cm-mobile-nav li:hover > .cm-sub-toggle i, 
+.cm-header .cm-mobile-nav li.current-page-ancestor > .cm-sub-toggle i, 
+.cm-header .cm-mobile-nav li.current-menu-ancestor > .cm-sub-toggle i, 
+.cm-header .cm-mobile-nav li.current-page-item > .cm-sub-toggle i, 
+.cm-header .cm-mobile-nav li.current-menu-item > .cm-sub-toggle i {
+	color: #fff;
+}
+
+.cm-mobile-nav .menu-logo a {
+	padding: 0;
+}
+
+.cm-mobile-nav.cm-mobile-open-container ul {
+	padding: 0;
+}
+
+.cm-mobile-nav.cm-mobile-open-container > .cm-mobile-menu--open {
+	padding: 10px;
+	background: #27272A;
+}
+
+.cm-mobile-nav.cm-mobile-open-container .cm-header-buttons {
+	width: fit-content;
+}
+
+.cm-mobile-nav.cm-mobile-open-container .date-in-header {
+	text-align: right;
+}
+
+.cm-mobile-nav.cm-mobile-open-container .cm-mobile-header-row.cm-mobile-menu--open {
+	display: flex;
+	gap: 8px;
+	flex-direction: column;
+}
+
+.cm-mobile-nav .menu {
+	position: absolute;
+	top: 100%;
+	width: 100%;
+	left: 0;
+	right: 0;
+	filter: drop-shadow(0px 4px 18px rgba(153, 153, 153, 0.1));
+}
+
+.cm-mobile-nav .cm-menu-primary-container {
+	width: 100%;
+	position: absolute;
+	top: 100%;
+	filter: drop-shadow(0px 4px 18px rgba(153, 153, 153, 0.1));
+}
+
+.cm-mobile-nav .cm-menu-primary-container > ul,
+.cm-mobile-nav .menu > ul {
+	width: 100%;
+}
+
+.cm-mobile-nav ul {
+	margin: 0;
+	list-style: none;
+}
+
+.cm-mobile-nav li a {
+	display: block;
+	flex-grow: 1;
+	padding: 10px 20px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.cm-mobile-nav .social-icons {
+	padding: 0 10px;
+}
+
+.cm-mobile-nav .social-icons a {
+	padding: 8px;
+}
+
+.cm-mobile-nav a {
+	color: #fff;
+	font-size: 14px;
+	transition: color 0.3s ease;
+}
+
+.cm-mobile-nav .cm-random-post a {
+	display: flex;
+	padding: 8px;
+	height: 48px;
+	line-height: 1.8;
+}
+
+.cm-mobile-nav .cm-random-post a svg {
+	display: block;
+	fill: #fff;
+	font-size: 32px;
+}
+
+.cm-mobile-nav li {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	background-color: #27272A;
+	border-top: 1px solid #3F3F46;
+	transition: background 0.3s ease;
+}
+
+.cm-mobile-nav li a:hover {
+	background-color: #207daf;
+	color: #fff;
+}
+
+.cm-mobile-nav .sub-menu {
+	flex-basis: 100%;
+	background: #1f2937; /* Fondo más oscuro para distinguirlo */
+	border-left: 3px solid #207daf; /* Indicador lateral */
+}
+
+.cm-mobile-nav .cm-submenu-toggle {
+	display: flex;
+	align-items: center;
+	padding: 14px;
+	border-left: 1px solid rgba(255, 255, 255, 0.2);
+	cursor: pointer;
+	transition: background 0.3s ease;
+}
+
+.cm-mobile-nav .cm-submenu-toggle:hover {
+	background: rgba(255, 255, 255, 0.05);
+}
+
+.cm-mobile-nav .cm-submenu-toggle svg {
+	fill: #fff;
+}
+
+.cm-mobile-nav ul ul a {
+	padding-left: 45px;
+	text-transform: none;
+}
+
+.cm-mobile-nav ul ul ul a {
+	padding-left: 90px;
+}
+
+.cm-mobile-nav .current_page_item > a, 
+.cm-mobile-nav .current-menu-item {
+	background: #207daf;
+	color: #fff;
+}
+
+.cm-mobile-nav .cm-home-icon a {
+	padding: 8px;
+}
+
+/* ============================================================
+   PAGINACIÓN CON MINIATURAS
+   ============================================================ */
+.default-wp-page.thumbnail-background-pagination {
+	overflow: hidden;
+}
+
+.default-wp-page.thumbnail-background-pagination img {
+	width: 100%;
+	display: inline-block;
+	margin-bottom: 0;
+	transition: transform 0.4s ease;
+}
+
+.default-wp-page.thumbnail-background-pagination li {
+	width: 50%;
+	transition: 0.4s all ease-in-out;
+	padding: 0;
+	position: relative;
+}
+
+.default-wp-page.thumbnail-background-pagination a {
+	font-size: 18px;
+	color: #fff;
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	bottom: 0;
+	z-index: 1;
+	padding: 15px;
+	background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
+	transition: background 0.3s ease;
+}
+
+.default-wp-page.thumbnail-background-pagination a .meta-nav {
+	display: block;
+	font-size: 14px;
+}
+
+.default-wp-page.thumbnail-background-pagination a:hover {
+	text-decoration: none;
+	background: linear-gradient(to bottom, transparent, rgba(32, 125, 175, 0.7));
+}
+
+.default-wp-page.thumbnail-background-pagination .previous {
+	width: calc(50% - 15px);
+	margin-right: 15px;
+}
+
+.default-wp-page.thumbnail-background-pagination .next {
+	width: calc(50% - 15px);
+	margin-left: 15px;
+	text-align: right;
+}
+
+.default-wp-page.thumbnail-background-pagination .next:hover {
+	transform: translateX(5px); /* Movimiento más notorio */
+}
+
+.default-wp-page.thumbnail-background-pagination .previous:hover {
+	transform: translateX(-5px); /* Movimiento más notorio */
+}
