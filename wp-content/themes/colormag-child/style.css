@@ -35,48 +35,48 @@ section.accordion_publi {
 section.accordion_publi:hover {
     background-color: #f5f5f5; /* Efecto hover sutil */
 }
-
 /* =======================================
-   MENÚ PRINCIPAL DE ESCRITORIO
+   Estilos creados por Harol Merma
+   Menú principal desktop
    ======================================= */
 
 .cm-primary-nav li {
-	position: relative; /* El <li> será la referencia para submenús posicionados con absolute */
-	font-family: "Montserrat", sans-serif; /* Fuente principal */
-	font-weight: 400; /* Grosor de fuente normal */
-	padding: 12px 20px; /* Espacio interno: 12px arriba/abajo y 20px a los lados */
+	position: relative;
+	font-family: "Montserrat", sans-serif;
+	font-weight: 400;
+	padding: 12px 20px;
 }
 
 .cm-primary-nav a {
-	display: flex; /* El enlace se comporta como contenedor flexible */
-	flex: 1; /* El enlace ocupa todo el ancho del <li> */
-	color: #ffffff; /* Texto negro */
-	font-size: 15px; /* Tamaño de fuente */
-	font-weight: 500; /* Grosor intermedio */
-	text-transform: uppercase; /* Todo en mayúsculas */
-	line-height: 2; /* Altura de línea doble */
-	letter-spacing: 1px; /* Espaciado entre letras */
-	transition: all 0.3s ease; /* Transición suave al hacer hover */
+	display: flex;
+	flex: 1;
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: 500;
+	text-transform: uppercase;
+	line-height: 2;
+	letter-spacing: 1px;
+	transition: all 0.3s ease;
 }
 
 .cm-primary-nav li.default-menu {
-	display: none; /* Oculta el menú por defecto que genera WordPress */
+	display: none;
 }
 
 .cm-primary-nav .cm-home-icon a {
-	padding: 8px; /* Espaciado alrededor del icono de inicio */
-	border-radius: 50%; /* Forma circular */
-	transition: background 0.3s ease; /* Fondo animado al hover */
+	padding: 8px;
+	border-radius: 50%;
+	transition: background 0.3s ease;
 }
 
 .cm-primary-nav .cm-home-icon a:hover {
-	background-color: #207daf; /* Fondo azul al pasar el mouse */
+	background-color: #207daf;
 }
 
 .cm-primary-nav a:hover {
-	color: #ffffff; /* Texto cambia a rojo oscuro */
-    font-weight: 700; /* Se pone en negrita */
-	transform: scale(1.1); /* Se agranda un 10% */
+	color: #ffffff;
+	font-weight: 700;
+	transform: scale(1.1);
 }
 
 .cm-primary-nav ul li.current-menu-item,
@@ -85,205 +85,216 @@ section.accordion_publi:hover {
 .cm-primary-nav ul li.current_page_item,
 .cm-primary-nav ul li:hover,
 .cm-primary-nav ul li.focus {
-	background-color: #a5000050; /* Fondo gris cuando está activo o en hover */
+	background-color: #a5000050;
 }
 
 .cm-primary-nav ul li ul li:hover,
 .cm-primary-nav ul li ul li.focus,
 .cm-primary-nav ul li ul li.current-menu-item,
 .cm-primary-nav ul li ul li.current_page_item {
-    background-color: #300202; /* Fondo rojo oscuro para submenús activos o hover */
+    background-color: #300202;
 }
 
 .cm-primary-nav .sub-menu,
 .cm-primary-nav .children {
-	background-color: #050230; /* Fondo rojo oscuro de los submenús */
-	border-radius: 8px; /* Bordes redondeados */
+	background-color: #050230;
+	border-radius: 8px;
 }
 
 .cm-primary-nav ul li:hover > ul,	
 .cm-primary-nav ul li.focus > ul {
-	left: 0; /* Posiciona el submenú alineado a la izquierda */
-	display: block; /* Muestra el submenú */
-	animation: sweepDown 0.3s ease forwards; /* Aparece con animación de barrido */
+	left: 0;
+	display: block;
+	animation: sweepDown 0.3s ease forwards;
 }
 
-
 .cm-primary-nav ul li ul li a {
-    padding: 0; /* Sin relleno extra */
-	border-top: none; /* Quita bordes superiores */
-	float: none; /* Quita flotado */
-	font-size: 15px;  /* Texto un poco más pequeño en submenús */
-	height: 100%; /* Ocupa todo el alto del <li> */
-	color: #f1f5f9; /* Texto gris claro */
-	display: block; /* Ocupa todo el ancho disponible */
-	text-align: left; /* Texto alineado a la izquierda */
-	text-transform: none; /* No en mayúsculas */
-	word-break: break-word; /* Permite cortar palabras largas */
-	transition: background 0.3s ease; /* Fondo cambia suavemente */
+    padding: 0;
+	border-top: none;
+	float: none;
+	font-size: 15px;
+	height: 100%;
+	color: #f1f5f9;
+	display: block;
+	text-align: left;
+	text-transform: none;
+	word-break: break-word;
+	transition: background 0.3s ease;
 }
 
 .cm-primary-nav ul li ul li:hover {
-	color: #fff; /* Texto blanco al hover */
-	background-color: #300202; /* Mantiene fondo rojo oscuro */
+	color: #fff;
+	background-color: #300202;
 }
 
 .cm-primary-nav ul li.current-menu-item ul li a:hover {
-	color: #fff; /* Texto blanco */
-	background-color: #3b82f6; /* Azul de realce */
+	color: #fff;
+	background-color: #3b82f6;
 }
 
 .cm-primary-nav ul li ul li ul {
-	left: 220px; /* Posiciona sub-submenús a la derecha */
-	top: 0; /* Alinea arriba */
+	left: 220px;
+	top: 0;
 }
 
 .cm-primary-nav select {
-	display: none; /* Oculta el menú select responsivo */
+	display: none;
 }
 
 #cm-primary-nav {
-	position: -webkit-sticky !important; /* soporte Safari */
+	position: -webkit-sticky !important;
     position: sticky;
     top: 0 !important;  
     z-index: 9999;      
-	z-index: 999; /* Se asegura de estar encima de otros elementos */
-	background: linear-gradient(to bottom, #881313, #420101); /* Gradiente de rojo oscuro */
-	box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* Sombra para dar relieve */
-	border-top: 2px solid #420101; /* Borde superior rojo oscuro */
-    border-bottom: 2px solid #990202a4; 
-	border-radius: 0 0 12px 12px; /* Bordes redondeados solo abajo */
+	z-index: 999;
+	background: linear-gradient(to bottom, #881313, #420101);
+	box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+	border-top: 2px solid #420101;
+    border-bottom: 2px solid #990202a4;
+	border-radius: 0 0 12px 12px;
 }  
+
 #cm-primary-nav .cm-row {
-	position: relative; /* Base para posicionar hijos */
-	display: flex; /* Diseño en fila flexible */
-	align-items: center; /* Alinea elementos verticalmente al centro */
-	box-sizing: border-box; /* Incluye borde y padding en el ancho total */
+	position: relative;
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
 }
 
 @keyframes sweepDown {
   from {
-    opacity: 0; /* Empieza invisible */
-    transform: scaleY(0); /* Contraído verticalmente */
-    transform-origin: top; /* Animación parte desde arriba */
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
   }
   to {
-    opacity: 1; /* Termina visible */
-    transform: scaleY(1); /* Expandido */
-    transform-origin: top; /* Se expande hacia abajo */
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: top;
   }
 }
 
 .cm-home-icon svg:hover {   
-	transform: scale(1.1); /* Hace un zoom de 10% en hover */
+	transform: scale(1.1);
 }
 
 .sticky-wrapper.is-sticky .cm-primary-nav .cm-home-icon a,
 .sticky-wrapper .cm-primary-nav .cm-home-icon a {
-	padding: 8px; /* Ajusta padding cuando el menú es sticky */
+	padding: 8px;
 }
 
 .cm-menu-primary-container {
-	flex-grow: 1; /* Se expande para ocupar el espacio sobrante */
-	flex-basis: 70%; /* Toma aprox. 70% del ancho (el logo ocupa el resto) */
+	flex-grow: 1;
+	flex-basis: 70%;
 }
 
-/* =========================
-   SUBMENÚ ESTILO COMPACTO, SIN ESPACIOS ENTRE ÍTEMS
-   ========================= */
 .cm-menu-primary-container .sub-menu {
     display: none; 
-    background: linear-gradient(180deg, rgba(66,1,1,0.9), rgba(255, 81, 81, 0.85)); /* Degradado semitransparente */
+    background: linear-gradient(180deg, rgba(66,1,1,0.9), rgba(255, 81, 81, 0.85));
     border-radius: 6px;
     padding: 1px;
     margin: 0;
     box-shadow: 0px 4px 10px rgba(0,0,0,0.2); 
 }
 
-/* Ítems: cero separación */
 .cm-menu-primary-container .sub-menu li {
-    margin: 1px;   /* sin espacio entre li */
-    padding:2px 0;  
-    border: none; /* sin bordes */
+    margin: 1px;
+    padding:2px 0;
+    border: none;
 }
 
-/* Enlaces supercompactos en versalitas */
 .cm-menu-primary-container .sub-menu li a {
     display: block;
     color: #ffffff;
-    padding: 4px 10px;            /* un poquito de padding solo para que se pueda hacer clic cómodamente */
-    font-size: 13px;              /* más pequeño */
-    font-variant: small-caps;     /* versalitas */
+    padding: 4px 10px;
+    font-size: 13px;
+    font-variant: small-caps;
     font-weight: 400;
-    letter-spacing: 0.5px;        /* ligero espacio entre letras */
-    line-height: 1.2;             /* compacta la altura */
+    letter-spacing: 0.5px;
+    line-height: 1.2;
     transition: all 0.3s ease;
 }
 
-/* Hover elegante */
 .cm-menu-primary-container .sub-menu li a:hover {
     background: rgba(255, 255, 255, 0.12);
-    padding-left: 14px; /* pequeño efecto al pasar el mouse */
+    padding-left: 14px;
 }
 
-/* Oculta ítem por defecto si existe */
 li.default-menu {
     display: none;
 }
+
 .cm-sub-toggle {
-	position: absolute; /* Posiciona la flecha dentro del <li> */
-	right: 15px; /* Separado de la derecha */
-	top: 12px; /* Bajado un poco desde arriba */
-	display: block; /* Se comporta como bloque */
-	text-align: center; /* Contenido centrado */
-	height: 24px; /* Altura */
-	width: 24px; /* Anchura */
-	color: #fff; /* Color blanco */
-	cursor: pointer; /* Cambia a manito al pasar */
-	line-height: 21px; /* Centra el ícono dentro */
-	transition: transform 0.3s ease; /* Suaviza la rotación */
+	position: absolute;
+	right: 15px;
+	top: 12px;
+	display: block;
+	text-align: center;
+	height: 24px;
+	width: 24px;
+	color: #fff;
+	cursor: pointer;
+	line-height: 21px;
+	transition: transform 0.3s ease;
 }
 
 .cm-sub-toggle .fa {
-	color: #fff; /* Ícono en blanco */
+	color: #fff;
 }
 
 .cm-sub-toggle.active {
-	transform: rotate(180deg); /* Flecha se gira hacia arriba cuando está activo */
+	transform: rotate(180deg);
 }
 
 .menu-logo a {
-	padding: 0; /* Elimina padding alrededor del logo */
+	padding: 0;
 }
 
 .menu-logo a:hover {
-	background-color: unset; /* Sin fondo al pasar el mouse */
+	background-color: unset;
 }
 
 .menu-logo img {
-	width: auto; /* Imagen conserva proporciones */
-	margin-bottom: 0; /* Quita margen inferior */
+	width: auto;
+	margin-bottom: 0;
 }
+
 #cm-primary-nav .cm-container,
 #cm-primary-nav .cm-row,
 #cm-primary-nav .cm-menu-primary-container {
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 0 20px !important;
-    width: 100% !important;
+    max-width: 100% ;
+    margin: 0 ;
+    padding: 0 20px ;
+    width: 100% ;
 }
+
 #cm-primary-nav .cm-menu-primary-container ul {
-    display: flex !important;
-    justify-content: center !important; /* 🔹 al centro */
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    text-align: center !important;
+    justify-content: center ;
+    width: 100% ;
+    margin: 0 ;
+    padding: 0 ;
+    text-align: center ;
 }
+
 #cm-primary-nav .cm-menu-primary-container ul li.current-menu-parent > a,
 #cm-primary-nav .cm-menu-primary-container ul li.current-menu-ancestor > a {
-    color: inherit !important;          /* vuelve al color normal */
-    font-weight: normal !important;     /* quita la negrita */
-    text-decoration: none !important;   /* quita subrayado */
-    background: none !important;        /* sin fondo */
+    color: inherit ;
+    font-weight: normal ;
+    text-decoration: none ;
+    background: none ;
 }
+@media (max-width: 768px) {
+    #cm-primary-nav .cm-container,
+    #cm-primary-nav .cm-row,
+    #cm-primary-nav .cm-menu-primary-container {
+        padding: 0 10px; /* ajuste estético sin romper layout */
+    }
+
+    .cm-primary-nav a {
+        font-size: 14px; /* texto más pequeño en móvil */
+    }
+}
+
+
+/* =======================================
+   ======================================= */
