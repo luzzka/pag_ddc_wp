@@ -84,6 +84,8 @@ do_action( 'colormag_before_main' );
 // agregar plugin de slider directamente en el header pero solo en la página de inicio
 if ( is_front_page() ) : 
 	echo do_shortcode('[smartslider3 slider="2"]');
+
+	do_action("mk_mostrar_subdirecciones_home");
 endif; 
 ?>
 
