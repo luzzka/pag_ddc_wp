@@ -99,21 +99,21 @@ section.accordion_publi:hover {
    ESTILOS PARA EL BANNER PRINCIPAL FRONT PAGE
    =================================================================== */
 
-/* Contenedor full-bleed */
+/* Contenedor full-bleed 
 #mk-header-slider.mk-header-slider-full {
   width: 100vw;
   max-width: 100vw;
-  margin-left: calc(50% - 50vw); /* rompe el contenedor centrado del tema */
+  margin-left: calc(50% - 50vw); /* rompe el contenedor centrado del tema 
   overflow: hidden;
 }
 
-/* Normaliza las imágenes dentro del slider */
+/* Normaliza las imágenes dentro del slider 
 #mk-header-slider img {
   width: 100%;
-  height: 70vh;        /* o 100vh si quieres full pantalla */
-  object-fit: cover;   /* recorta sin deformar */
+  height: 70vh;        /* o 100vh si quieres full pantalla 
+  object-fit: cover;   /* recorta sin deformar 
   display: block;
-}
+}*/
 
 
 

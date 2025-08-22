@@ -79,15 +79,7 @@ do_action( 'colormag_action_before' );
 do_action( 'colormag_before_main' );
 ?>
 
-<!-- 🔽 Slider fuera de cm-content, a ancho completo -->
-<div id="mk-header-slider" class="mk-header-slider-full">
-  <?php
-    // Mostrar el Mkslider
-    if ( function_exists( 'do_action' ) ) {
-      do_action( 'mkslider_action_display' );
-    }
-  ?>
-</div>
+
 
 <?php
 /**
