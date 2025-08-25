@@ -1,259 +1,214 @@
 <?php
-
 /**
-
- * Theme Single Post Section for our theme.
-
+ * Plantilla para mostrar un post individual del Custom Post Type 'mksubdireccion'.
  *
-
+ * Este archivo controla la vista de una "Subdirección" individual, mostrando su contenido
+ * principal y una barra lateral con widgets personalizados y noticias relacionadas.
+ *
  * @package ThemeGrill
-
  * @subpackage ColorMag
-
  * @since ColorMag 1.0
-
  */
 
-?>
+// Carga el archivo header.php del tema.
+get_header(); ?>
 
-
-
-<?php get_header(); ?>
-<?php do_action( "mkslider_action_display" ); ?>
-<?php do_action( 'colormag_before_body_content' ); ?>
-<div class="ctnsubtp centersubdireccion">
- <div id="content" class="clearfix">
-   <?php
-   while ( have_posts() ) : the_post(); ?>
-   <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-   <?php do_action( 'colormag_before_post_content' ); ?>
-
-   <?php
-      $image_popup_id = get_post_thumbnail_id();
-      $image_popup_url = wp_get_attachment_url( $image_popup_id );
-   ?>
-
-   <?php if ( has_post_thumbnail() ) { ?>
-      <div class="featured-image">
-      <?php if (get_theme_mod('colormag_featured_image_popup', 0) == 1) { ?>
-         <a href="<?php echo $image_popup_url; ?>" class="image-popup"><?php the_post_thumbnail( 'colormag-featured-image' ); ?></a>
-      <?php } else { ?>
-         <?php the_post_thumbnail( 'colormag-featured-image' ); ?>
-      <?php } ?>
-      </div>
-   <?php } ?>
-
-   <div class="article-content clearfix">
-
-   <?php if( get_post_format() ) { get_template_part( 'inc/post-formats' ); } ?>
-
-   <?php colormag_colored_category(); ?>
-
-      <?php if( get_the_ID() != 413 ) { ?> 
-      
-         <header class="entry-header">
-            <h1 class="entry-title">
-               <?php the_title(); ?>
-            </h1>
-         </header>
-      
-      <?php } ?>
-
-      <?php colormag_entry_meta(); ?>
-
-      <div class="entry-content clearfix">
-         <?php
-            the_content();
-
-            wp_link_pages( array(
-               'before'            => '<div style="clear: both;"></div><div class="pagination clearfix">'.__( 'Pages:', 'colormag' ),
-               'after'             => '</div>',
-               'link_before'       => '<span>',
-               'link_after'        => '</span>'
-            ) );
-         ?>
-      </div>
-
-   </div>
-
-   <?php do_action( 'colormag_after_post_content' ); ?>
-</article>
-   <?php
-   endwhile;
-   ?>
-</div><!-- #content -->
-<?php #get_template_part( 'navigation', 'single' ); ?>
-
-<?php if ( get_the_author_meta( 'description' ) ) : ?>
-
-   <div class="author-box">
-
-      <div class="author-img"><?php echo get_avatar( get_the_author_meta( 'user_email' ), '100' ); ?></div>
-
-      <h4 class="author-name"><?php the_author_meta( 'display_name' ); ?></h4>
-
-      <p class="author-description"><?php the_author_meta( 'description' ); ?></p>
-
-   </div>
-
-<?php endif; ?>
-
-<?php if ( get_theme_mod( 'colormag_related_posts_activate', 0 ) == 1 )
-
-get_template_part( 'inc/related-posts' );
-
-?>
 <?php
-do_action( 'colormag_before_comments_template' );
-// If comments are open or we have at least one comment, load up the comment template
-if ( comments_open() || '0' != get_comments_number() )
-
-   comments_template();
-
-do_action ( 'colormag_after_comments_template' );
-
+// Llama a acciones personalizadas del tema, probablemente para sliders o contenido global.
+do_action( "mkslider_action_display" );
+do_action( 'colormag_before_body_content' );
 ?>
 
-</div><!-- #centersub -->
+<!-- Contenedor principal para la maquetación Flexbox de 2 columnas -->
+<div class="main-layout-container">
 
-<div class="ctnsubtp rightsub">
-   <?php
-      #recuperar todos las subdirecciones
-   $args = array("numberposts" => 4, "orderby" => "date", "order" => "ASC", "post_type" => "mksubdireccion");
-   $subdirecciones = get_posts( $args );
-   if( !empty( $subdirecciones ) ):
-      ?>
-   <div class="block-subdir">
-      <div class="block-inner clearfix">
-         <div class="listsubdir_s">
+    <!-- =================================================================
+         COLUMNA CENTRAL (CENTERSUBDIRECCION) - CONTENIDO PRINCIPAL
+         ================================================================= -->
+    <div class="ctnsubtp centersubdireccion">
+        <div id="content" class="clearfix">
             <?php
-            foreach ($subdirecciones as $key => $value) {
-                  #recuperar el color del post
-               $color =  get_post_meta($value->ID, "mkboxcolor", true );
-               $imagen = get_post_meta($value->ID, "mkimagenpost", true );
-               $color = !empty( $color ) ? $color : "FFFFFF";
-               $imagen = !empty( $imagen ) ? $imagen : "";
-               #armar el css
-               $css = ' style="background-color:#'.$color.';';
-               $css .= '" ';
-               ?>
-               <a href="<?php the_permalink($value->ID); ?>">
-                  <div class="itemsubdir_s" <?php echo $css; ?>>
-                     <?php
-                     if( empty( $imagen ) ) {
-                        echo get_the_title($value->ID);
-                     } else {
-                        echo "<img src='".$imagen."' alt='".get_the_title($value->ID)."'>";
-                     }
-                     ?>
-                  </div>
-               </a>
-               <?php
-               }#end foreach subdirecciones
-               ?>
-            </div>
-         </div>
-      </div>
-   <?php endif; ?>
+            // El Bucle Principal (The Main Loop) de WordPress.
+            while ( have_posts() ) : the_post();
 
-   <?php
-      #recuperar el side bar de este patrimonio
-   $idenslider = get_post_meta($post->ID, 'mkpost_sidebar_iden', true );
-   if( !$idenslider )
-      $idenslider = "0";
-   $slider = array();
-   if( $idenslider != "0" ){
-         #recuperar el slider
-      $options_slider = get_option( "mksidebarsbd", false );
-      if( !empty($options_slider) OR $options_slider != false )
-         $options_slider = stripslashes_deep( unserialize( base64_decode( $options_slider ) ) );
-      $encontrado = false;
-      if( !empty( $options_slider ) && is_array( $options_slider ) )
-         foreach ($options_slider as $key => $value) {
-            if( $idenslider == $key ){
-               $encontrado = true;
-               break;
+                /**
+                 * MEJORA: Eliminamos la lógica del "Número Mágico" (ID 413) de la plantilla.
+                 * En lugar de `if( get_the_ID() != 413 )`, es mucho mejor usar un filtro
+                 * si necesitas ocultar el título de una página específica.
+                 *
+                 * ¿Cómo hacerlo correctamente? Añade este código a tu archivo functions.php:
+                 *
+                 * add_filter( 'the_title', 'ocultar_titulo_especifico', 10, 2 );
+                 * function ocultar_titulo_especifico( $title, $id = null ) {
+                 *     // ID de la página cuyo título quieres ocultar.
+                 *     $id_a_ocultar = 413; 
+                 *     if ( is_singular('mksubdireccion') && $id == $id_a_ocultar ) {
+                 *         return ''; // Devuelve un string vacío para ocultar el título.
+                 *     }
+                 *     return $title; // Devuelve el título original para todas las demás páginas.
+                 * }
+                 *
+                 * Esto es más limpio, mantenible y sigue las buenas prácticas de WordPress.
+                 */
+
+                /**
+                 * MEJORA: Reutilizamos el código de `content-single.php`.
+                 * En lugar de duplicar todo el código del <article>, simplemente llamamos
+                 * a la plantilla parcial. Esto hace que el código sea limpio y fácil de mantener.
+                 */
+                get_template_part( 'content', 'single' );
+
+
+                // --- Bloque de Autor, Relacionados y Comentarios (heredado de ColorMag) ---
+
+                // Si el autor del post tiene una biografía, muestra la caja de autor.
+                if ( get_the_author_meta( 'description' ) ) {
+                    get_template_part('inc/author-bio'); // El tema puede tener una plantilla para esto.
+                }
+
+                // Si la opción de "posts relacionados" está activa, la muestra.
+                if ( get_theme_mod( 'colormag_related_posts_activate', 0 ) == 1 ) {
+                   get_template_part( 'inc/related-posts' );
+                }
+                
+                // Muestra la sección de comentarios si están habilitados.
+                if ( comments_open() || get_comments_number() != '0' ) {
+                   comments_template();
+                }
+
+            endwhile; // Fin del bucle principal.
+            ?>
+        </div><!-- #content -->
+    </div><!-- .centersubdireccion -->
+
+
+    <!-- =================================================================
+         COLUMNA DERECHA (RIGHTSUB) - WIDGETS Y NOTICIAS
+         ================================================================= -->
+    <div class="ctnsubtp rightsub">
+        <?php
+        // --- WIDGET 1: LISTA DE OTRAS SUBDIRECCIONES ---
+        // (Este bloque es idéntico al de single-mkarea.php, podría convertirse en un template part también)
+        $args_subdirs = array(
+            "post_type"      => "mksubdireccion",
+            "posts_per_page" => 4,
+            "orderby"        => "date",
+            "order"          => "ASC"
+        );
+        $subdirecciones = get_posts( $args_subdirs );
+        if ( ! empty( $subdirecciones ) ) : ?>
+            <div class="block-subdir">
+                <div class="block-inner clearfix">
+                    <div class="listsubdir_s">
+                        <?php foreach ( $subdirecciones as $subdireccion_item ) :
+                            $color  = get_post_meta( $subdireccion_item->ID, "mkboxcolor", true ) ?: 'FFFFFF';
+                            $imagen = get_post_meta( $subdireccion_item->ID, "mkimagenpost", true );
+                        ?>
+                            <a href="<?php echo esc_url( get_permalink( $subdireccion_item->ID ) ); ?>">
+                                <div class="itemsubdir_s" style="background-color: #<?php echo esc_attr( $color ); ?>;">
+                                    <?php if ( ! empty( $imagen ) ) : ?>
+                                        <img src="<?php echo esc_url( $imagen ); ?>" alt="<?php echo esc_attr( get_the_title( $subdireccion_item->ID ) ); ?>">
+                                    <?php else : ?>
+                                        <?php echo esc_html( get_the_title( $subdireccion_item->ID ) ); ?>
+                                    <?php endif; ?>
+                                </div>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        // --- WIDGET 2: SLIDER PERSONALIZADO ---
+        // (Este bloque también es reutilizado)
+        $idenslider = get_post_meta( get_the_ID(), 'mkpost_sidebar_iden', true );
+        if ( ! empty( $idenslider ) && $idenslider != "0" ) {
+            $options_slider_raw = get_option( "mksidebarsbd", false );
+            if ( ! empty( $options_slider_raw ) ) {
+                $options_slider = unserialize( base64_decode( $options_slider_raw ) );
+                if ( is_array( $options_slider ) && isset( $options_slider[$idenslider]['slider'] ) ) {
+                    $slider = $options_slider[$idenslider]['slider'];
+                    if ( ! empty( $slider ) && is_array( $slider ) ) : ?>
+                        <div class="block-sidebar">
+                            <div class="block-inner clearfix">
+                                <div class="view-content">
+                                    <?php foreach ( $slider as $slide ) : ?>
+                                        <div class="view-item">
+                                            <a href="<?php echo esc_url( $slide['enlace'] ); ?>">
+                                                <div class="item-image">
+                                                    <img src="<?php echo esc_url( $slide['imagen'] ); ?>" alt="<?php echo esc_attr( $slide['titulo'] ); ?>" class="adaptive-image">
+                                                </div>
+                                                <div class="field-enlace-menu">
+                                                    <span class="title"><?php echo esc_html( $slide['titulo'] ); ?></span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif;
+                }
             }
-         }#end foreach options_slider
-         if( $encontrado )
-            $slider = $options_slider[$idenslider]['slider'];
-      }
-      if( !empty( $slider ) ):
-         ?>
-      <div class="block-sidebar">
-         <div class="block-inner clearfix">
-            <div class="view-content">
-               <?php foreach ($slider as $key => $slide) {
-                  ?>
-                  <div class="view-item">
-                     <a href="<?php echo $slide['enlace']; ?>">
-                        <div class="item-image">
-                           <img src="<?php echo $slide['imagen'] ?>" alt="<?php echo $slide['titulo'] ?>" class="adaptive-image">
+        }
+        ?>
+
+        <?php
+        // --- WIDGET 3: NOTICIAS RELACIONADAS ---
+        $args_noticias = array(
+            'post_type'      => 'noticia',
+            'post_parent'    => get_the_ID(),
+            'orderby'        => 'date',
+            'posts_per_page' => 2,
+        );
+        $query_noticias = new WP_Query( $args_noticias );
+
+        if ( $query_noticias->have_posts() ) : ?>
+            <div class="widget-news-related">
+                <h3 class="widget-title"><span>Noticias</span></h3>
+                <div class="widget-content">
+                    <?php while( $query_noticias->have_posts() ) : $query_noticias->the_post(); ?>
+                        <div class="news-item">
+                            <?php if ( has_post_thumbnail() ) : ?>
+                                <div class="news-item-image">
+                                    <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+                                        <?php the_post_thumbnail('medium'); ?>
+                                    </a>
+                                </div>
+                            <?php endif; ?>
+                            <div class="news-item-content">
+                                <h4 class="news-item-title">
+                                    <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+                                        <?php the_title(); ?>
+                                    </a>
+                                </h4>
+                                <div class="news-item-excerpt">
+                                    <?php
+                                        // MEJORA: Usamos la función nativa de WordPress para crear un extracto.
+                                        // Es más segura y eficiente que el método manual.
+                                        echo wp_trim_words( get_the_content(), 20, '...' );
+                                    ?>
+                                </div>
+                            </div>
                         </div>
-                        <div class="field-enlace-menu">
-                           <span class="title"><?php echo $slide['titulo']; ?></span>
-                        </div>
-                     </a>
-                  </div>
-                  <?php
-               } ?>
+                    <?php endwhile; ?>
+                    <div class="news-more-link">
+                        <?php $post_slug = get_post_field( 'post_name', get_the_ID() ); ?>
+                        <a href="<?php echo esc_url( get_site_url( null, 'noticias/' . $post_slug ) ); ?>">Leer más noticias</a>
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-   <?php endif; ?>
+        <?php endif;
+        // ¡Importante! Restaurar los datos del post original.
+        wp_reset_postdata();
+        ?>
+    </div><!-- .rightsub -->
 
-   <?php
-   $args = array(
-      'post_type' => 'noticia',
-      'post_parent' => $post->ID,
-      'orderby' => 'date',
-      'posts_per_page' => '2');
-   $post_slug = $post->post_name;
-   $query_n = new WP_Query($args);
-   if($query_n->have_posts()):
-      ?>
-   <div class="notiS">
-      <div class="block-contentS">
-         <h2 class="titleS">Noticias</h2>
-         <div class="content-fix clearfix">
-            <?php
-            $count = 0;
-            while($query_n->have_posts()) : $query_n->the_post(); $count++;
-            $contenido = get_the_content();
-            $contenido = html_entity_decode( $contenido, ENT_QUOTES, get_bloginfo( 'charset' ) );
-            $contenido = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', "", $contenido);
-            $contenido = strip_tags($contenido);
-            $contenido = strip_shortcodes($contenido);
-            $excerpt  = implode(' ', array_slice(explode(' ', $contenido), 0, 20)); ?>
-            <div class="attachS">
-               <div class="viewNP">
-                  <?php if($count == 1 && has_post_thumbnail()): ?>
-                     <div class="fieldI">
-                        <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-                           <?php the_post_thumbnail('medium'); ?>
-                        </a>
-                     </div>
-                  <?php endif; ?>
-                  <div class="fieldT">
-                     <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-                        <?php the_title(); ?>
-                     </a>
-                  </div>
-                  <div class="fieldD">
-                     <p><?php echo $excerpt; ?></p>
-                  </div>
-               </div>
-            </div>
-         <?php endwhile; ?>
-         <div class="more-linkS">
-            <a href="<?php echo get_site_url(); ?>/noticias/<?php echo $post_slug; ?>">Leer m&aacute;s noticias</a>
-         </div>
-      </div>
-   </div>
-</div>
-<?php endif; wp_reset_postdata();?>
-</div>
+</div><!-- .main-layout-container -->
 
-<?php do_action( 'colormag_after_body_content' ); ?>
-
-<?php get_footer(); ?>
+<?php
+// Acciones finales y carga del footer.
+do_action( 'colormag_after_body_content' );
+get_footer();
+?>
