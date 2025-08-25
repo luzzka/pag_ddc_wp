@@ -313,7 +313,7 @@ function mi_tema_hijo_cargar_codigo_personalizado() {
 
             if ( ! empty( $titulo_seccion ) ) {
                 // Renderiza el h3 nativo de ColorMag pero lo capturamos
-                ob_start();
+                //ob_start();
                 $this->widget_title( 
                     $titulo_seccion, // título
                     'latest',        // tipo (si tu helper lo pide)

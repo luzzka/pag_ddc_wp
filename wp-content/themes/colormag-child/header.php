@@ -85,7 +85,7 @@ do_action( 'colormag_before_main' );
 if ( is_front_page() ) : 
 	echo do_shortcode('[smartslider3 slider="2"]');
 
-	do_action("mk_mostrar_subdirecciones_home");
+	//do_action("mk_mostrar_subdirecciones_home");
 endif; 
 ?>
 
