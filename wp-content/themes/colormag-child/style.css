@@ -440,4 +440,168 @@ li.default-menu {
 
 
 /* =======================================
+    ESTILOS PARA SUBDIRECCIONES
    ======================================= */
+
+/* Variables Globales y Configuración Base ====================== */
+:root {
+  --spacing-small: 10px;
+  --spacing-medium: 20px;
+  --spacing-large: 30px;
+}
+
+
+/* Estructura Principal (Layout con Flexbox) =================== */
+.main-layout-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-medium); 
+}
+
+/* Estilos base para todas las columnas */
+.ctnsubtp {
+  width: 100%; 
+  box-sizing: border-box; 
+}
+
+@media only screen and (min-width: 900px) { /* 56.25em = 900px si 1em = 16px */
+  .ctnsubtp.leftsub {
+    flex: 1 1 21%; /* flex-grow, flex-shrink, flex-basis */
+  }
+  .ctnsubtp.centersub {
+    flex: 1 1 55%;
+  }
+  .ctnsubtp.rightsub {
+    flex: 1 1 18%;
+  }
+  .ctnsubtp.centersubdireccion {
+    flex: 1 1 76%;
+  }
+}
+
+
+/* columna izquierda ======================== */
+
+.listareas {
+  line-height: 1.45;
+  margin-bottom: var(--spacing-medium);
+}
+
+.listareas a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.listareas a:hover {
+  text-decoration: underline;
+}
+
+.listareas .mkmenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.listareas .menu-block-wrapper > .mkmenu > li > a {
+  font-size: var(--font-size-base);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.listareas .menumk .menu-mlid { /* Submenú */
+  padding: 0.2em 0.5em 0 0;
+}
+
+.listareas .menumk .menu-mlid a {
+  line-height: 1.2;
+}
+
+/* Estado activo para el enlace de la página actual */
+.listareas .menumk .menu-mlid.active a {
+  color: #8f333ffa;
+  font-weight: bold;
+}
+
+
+/* Columna Derecha ========================== */
+
+.block-subdir {
+  margin-bottom: var(--spacing-medium);
+}
+
+.itemsubdir_s {
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  margin-bottom: 15px;
+  /*color: var(--color-text-light); 
+  /*text-transform: uppercase;
+  font-size: var(--font-size-base);
+  font-weight: bold;*/
+}
+
+.itemsubdir_s img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover; 
+}
+
+
+/* Sidebar Personalizado - Columna Derecha ======================== */
+
+.block-sidebar .view-item {
+  margin-bottom: var(--spacing-small);
+}
+
+.block-sidebar .view-item a {
+  text-decoration: none;
+}
+
+.block-sidebar .view-item img {
+  display: block; 
+  width: 100%;
+  height: auto;
+  margin-bottom: 0;
+}
+
+
+/* Estilos Misceláneos: Noticias, ... ================================= */
+.notiS {
+	background-color: var(--color-background-light);
+	padding-top: var(--spacing-small);
+  padding-bottom: var(--spacing-small); /* Añadido para consistencia */
+}
+
+h2.titleS {
+	color: var(--color-primary);
+	font-size: 15px;
+	padding-left: var(--spacing-small);
+}
+
+.viewNP {
+	margin-bottom: var(--spacing-small);
+}
+
+.fieldT, .fieldD {
+	padding: 0 var(--spacing-small) var(--spacing-small);
+}
+
+.fieldT a {
+	color: var(--color-text);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.more-linkS {
+  display: inline-block; /* Float es frágil, esto es mejor */
+	background-color: var(--color-primary);
+	text-align: center;
+	padding: 5px;
+  margin-top: var(--spacing-small);
+}
+
+.more-linkS a {
+	color: var(--color-text-light);
+  text-decoration: none;
+}
