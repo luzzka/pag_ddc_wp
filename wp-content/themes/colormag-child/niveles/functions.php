@@ -945,7 +945,7 @@ function cargar_swiper() {
                 spaceBetween: 20,
                 loop: true,
                 speed: 1000, // transición más suave
-                effect: 'silde', // prueba también 'fade', 'coverflow', 'cards'
+                effect: 'slide', // prueba también 'fade', 'coverflow', 'cards'
                 autoplay: {
                     delay: 4000,
                     disableOnInteraction: false,
