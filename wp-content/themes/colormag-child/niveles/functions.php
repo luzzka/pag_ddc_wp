@@ -249,8 +249,7 @@ function areas_attributes_meta_box($post) {
 add_action( "add_meta_boxes", "metabox_color");
 
 function agregar_metabox_color( $post ){
-    //wp_enqueue_script( "Pick color", get_template_directory_uri() . '/niveles/jscolor.js', array( 'jquery' ), '1.0', true );
-    wp_enqueue_script( "Pick color", get_stylesheet_directory_uri() . '/niveles/jscolor.js', array( 'jquery' ), '1.0', true );
+    wp_enqueue_script( "Pick color", get_template_directory_uri() . '/niveles/jscolor.js', array( 'jquery' ), '1.0', true );
     #recuperar la variable
     $color = get_post_meta($post->ID, "mkboxcolor", true );
     $imagen = get_post_meta( $post->ID, "mkimagenpost", true );
@@ -853,3 +852,119 @@ function redirectCatchPage() {
         exit;
     }#noticiap query_var
 }#end function redirectCatchPage
+
+
+
+function noticias_carrusel_shortcode() {
+    // 🔹 Consulta la primera noticia más reciente
+    $destacada = new WP_Query(array(
+        'post_type'      => 'noticia',
+        'posts_per_page' => 1,
+    ));
+
+    // 🔹 Consulta las siguientes noticias (excluyendo la destacada)
+    $query = new WP_Query(array(
+        'post_type'      => 'noticia',
+        'posts_per_page' => 6,
+        'offset'         => 1,
+    ));
+
+    ob_start(); ?>
+    
+    <div class="noticias-section">
+        <h2 class="cm-widget-title"> Noticias</h2>
+
+        <?php if ($destacada->have_posts()): ?>
+            <div class="noticia-destacada">
+                <?php while ($destacada->have_posts()): $destacada->the_post(); ?>
+                    <a href="<?php the_permalink(); ?>" class="noticia-destacada-link">
+                        <?php if (has_post_thumbnail()): ?>
+                            <div class="noticia-destacada-img">
+                                <?php the_post_thumbnail('large'); ?>
+                            </div>
+                        <?php endif; ?>
+                        <div class="noticia-destacada-contenido">
+                            <h3 class="noticia-destacada-titulo"><?php the_title(); ?></h3>
+                            <p class="noticia-destacada-fecha">
+                                <i class="fa fa-calendar"></i> <?php echo get_the_date(); ?>
+                            </p>
+                            <p class="noticia-destacada-extracto">
+                                <?php echo wp_trim_words(get_the_content(), 45, '...'); ?>
+                            </p>
+                        </div>
+                    </a>
+                <?php endwhile; ?>
+            </div>
+        <?php endif; ?>
+        <?php wp_reset_postdata(); ?>
+
+        <?php if ($query->have_posts()): ?>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <?php while ($query->have_posts()): $query->the_post(); ?>
+                        <div class="swiper-slide noticia-slide">
+                            <a href="<?php the_permalink(); ?>" class="noticia-link">
+                                <?php if (has_post_thumbnail()): ?>
+                                    <div class="noticia-img">
+                                        <?php the_post_thumbnail('medium'); ?>
+                                    </div>
+                                <?php endif; ?>
+                                <h3 class="noticia-titulo"><?php the_title(); ?></h3>
+                                <p class="noticia-fecha"><i class="fa fa-calendar"></i> <?php echo get_the_date(); ?></p>
+                            </a>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
+
+                <!-- Botones de navegación -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+
+                <!-- Paginación -->
+                <div class="swiper-pagination"></div>
+            </div>
+        <?php endif; ?>
+        <?php wp_reset_postdata(); ?>
+    </div>
+
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('noticias_carrusel', 'noticias_carrusel_shortcode');
+
+
+
+function cargar_swiper() {
+    wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
+    wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), null, true);
+
+    wp_add_inline_script('swiper-js', "
+        document.addEventListener('DOMContentLoaded', function() {
+            new Swiper('.mySwiper', {
+                slidesPerView: 3,
+                spaceBetween: 20,
+                loop: true,
+                speed: 1000, // transición más suave
+                effect: 'silde', // prueba también 'fade', 'coverflow', 'cards'
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    1024: { slidesPerView: 3 },
+                    768: { slidesPerView: 2 },
+                    480: { slidesPerView: 1 }
+                }
+            });
+        });
+    ");
+}
+add_action('wp_enqueue_scripts', 'cargar_swiper');

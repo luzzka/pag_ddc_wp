@@ -1,11 +1,23 @@
 <?php
  
 //CARGA EL STYLE.CSS DEL TEMA PADRE EN EL TEMA HIJO
-  
+require_once get_stylesheet_directory() . '/niveles/functions.php';
 add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles' );
 function my_theme_enqueue_styles() {
 wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
 }
+
+function colormag_child_override_widgets() {
+    // 1. Eliminar el widget original del padre
+    unregister_widget( 'colormag_featured_posts_widget' );
+
+    // 2. Incluir el archivo del hijo con tu clase modificada
+    require_once get_stylesheet_directory() . '/inc/widgets/class-colormag-featured-posts-widget.php';
+
+    // 3. Registrar tu nueva clase (la tuya, no la del padre)
+    register_widget( 'colormag_featured_noticias_widget' );
+}
+add_action( 'widgets_init', 'colormag_child_override_widgets', 20 );
 
 /* ****************************************************************************** */
 // cargar carpeta niveles
