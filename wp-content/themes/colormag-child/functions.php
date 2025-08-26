@@ -20,6 +20,12 @@ function colormag_child_override_widgets() {
 add_action( 'widgets_init', 'colormag_child_override_widgets', 20 );
 
 /* ****************************************************************************** */
+// cargar carpeta niveles
+/* ******************************************************************************** */
+require_once get_stylesheet_directory() . '/niveles/functions.php';
+
+
+/* ****************************************************************************** */
 /* ****************************************************************************** */
 /**
  * colormag_dj_drc_publicaciones
@@ -267,12 +273,10 @@ add_action( 'widgets_init', function() {
 });*/
 
 /* ****************************************************************************** */
+/* WIDGET DE PUBLICACIONES EN PAGINA PRINCIPAL
 /* ****************************************************************************** */
 
-/**
- * Función contenedora para cargar nuestro código de widgets.
- * Se ejecutará DESPUÉS de que el tema padre haya cargado sus archivos.
- */
+// Cargar el widget luego del padre
 function mi_tema_hijo_cargar_codigo_personalizado() {
 
     // verificar que exista la clase ColorMag_Widget
@@ -280,15 +284,12 @@ function mi_tema_hijo_cargar_codigo_personalizado() {
         return; // Si no existe, no hacemos nada.
     }
 
-    /**
-     * Widget DRC: Publicaciones
-     * Hereda de ColorMag_Widget para usar la nueva estructura y estilos.
-     */
+    // Widget DRC: Publicaciones ---------------------
     class colormag_dj_drc_publicaciones extends ColorMag_Widget {
 
         // construir la funcion, para escoger publicaciones manualmente, con url e imagen
         public function __construct() {
-            $this->widget_cssclass    = 'cm-widget-custom-publications';
+            $this->widget_cssclass    = 'cm-featured-posts '; 
             $this->widget_description = esc_html__( 'Agregar hasta 4 publicaciones manualmente.', 'colormag' );
             $this->widget_name        = esc_html__( 'DRC: Publicaciones', 'colormag' );
 
@@ -317,34 +318,32 @@ function mi_tema_hijo_cargar_codigo_personalizado() {
         }
 
         public function widget( $args, $instance ) {
-            /*$titulo_seccion = apply_filters( 'widget_title', isset( $instance['titulo_seccion'] ) ? $instance['titulo_seccion'] : '' );
 
-            $this->widget_start( $args );
-
-            if ( ! empty( $titulo_seccion ) ) {
-                echo $args['before_title'] . esc_html( $titulo_seccion );
-                echo '<a class="view-all-link" href="/publicaciones" title="Ver todas las publicaciones" target="_blank">Ver Publicaciones &gt;&gt;</a>';
-                echo $args['after_title'];
-            }*/
             $titulo_seccion = isset( $instance['titulo_seccion'] ) ? $instance['titulo_seccion'] : '';
 
             $this->widget_start( $args );
 
             if ( ! empty( $titulo_seccion ) ) {
-                echo '<div class="cm-title-wrap">';
-                //$this->widget_title( $titulo_seccion );
+                // Renderiza el h3 nativo de ColorMag pero lo capturamos
+                //ob_start();
                 $this->widget_title( 
-                    $titulo_seccion, // título real
-                    'latest',        // valor por defecto
-                    0                // categoría nula
+                    $titulo_seccion, // título
+                    'latest',        // tipo (si tu helper lo pide)
+                    0                // categoría (si aplica)
                 );
-                echo '<a class="view-all-link" href="/publicaciones" target="_blank">Ver Publicaciones &gt;&gt;</a>';
-                echo '</div>';
+                $title_html = ob_get_clean();
+
+                // Link "ver más" (puedes parametrizarlo si quieres)
+                $link_html = '<a class="view-all-link" href="' . esc_url( home_url( '/publicaciones/' ) ) . '" target="_blank">Ver Publicaciones &raquo;</a>';
+
+                // Inserta el enlace antes del cierre del h3
+                if ( false !== strpos( $title_html, '</h3>' ) ) {
+                    $title_html = str_replace( '</h3>', $link_html . '</h3>', $title_html );
+                }
+
+                echo $title_html;
             }
-            /* --------------------------*/
 
-
-            echo '<div class="cm-posts">';
 
             for ( $i = 1; $i <= 4; $i++ ) {
                 $enlace = isset( $instance[ "publi_enlace_{$i}" ] ) ? esc_url( $instance[ "publi_enlace_{$i}" ] ) : '';
@@ -352,34 +351,36 @@ function mi_tema_hijo_cargar_codigo_personalizado() {
 
                 if ( ! empty( $enlace ) && ! empty( $imagen ) ) {
                     ?>
-                    <div class="cm-post">
-                        <figure class="cm-featured-image">
-                            <a href="<?php echo $enlace; ?>" title="" target="_blank">
-                                <img width="211" height="205" src="<?php echo $imagen; ?>" alt="">
-                            </a>
-                        </figure>
+                    <div class="first-post publi2">
+                        <div class="single-article clearfix">
+                            <figure>
+                                <a href="<?php echo $enlace; ?>" title="" target="_blank">
+                                    <img width="211" height="205"
+                                        src="<?php echo $imagen; ?>"
+                                        class="attachment-colormag-featured-post-medium size-colormag-featured-post-medium wp-post-image"
+                                        alt=""
+                                        title="">
+                                </a>
+                            </figure>
+                        </div>
                     </div>
                     <?php
                 }
             }
             
-            echo '</div>';
             $this->widget_end( $args );
         }
-    } // Fin de la clase colormag_dj_drc_publicaciones
+    } 
 
-    // Ahora registramos el widget. Esto también debe estar dentro de la función.
-    // Usamos el hook 'widgets_init' para el registro.
+    // Registrar el widget
     add_action( 'widgets_init', function() {
         register_widget( 'colormag_dj_drc_publicaciones' );
     });
 
-} // Fin de la función mi_tema_hijo_cargar_codigo_personalizado
+} 
 
-
-// ¡Esta es la línea clave! Ejecutamos nuestra función en el momento correcto.
+// cargar la función luego del padre
 add_action( 'after_setup_theme', 'mi_tema_hijo_cargar_codigo_personalizado' );
-
 
 
 

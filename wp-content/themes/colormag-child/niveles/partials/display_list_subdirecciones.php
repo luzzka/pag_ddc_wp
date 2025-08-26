@@ -18,4 +18,8 @@
         <div class="itemsubdir" style="background-color:#71A076;background-image:url(/wp-content/uploads/2017/07/min_INTERCULTURALIDAD_WEB_2023-1.jpg);">
         </div>
     </a>
+    <a href="#">
+        <div class="itemsubdir" style="background-color:#FBB040;background-image:url(/wp-content/uploads/2025/08/machupicchu.jpg);">
+        </div>
+    </a>
 </div>
