@@ -38,7 +38,7 @@ class DRC_Parques_Widget extends WP_Widget {
 
                 // Contenido
                 echo '<div class="parque-info">';
-                echo '<h3><a href="'.get_permalink().'">'.get_the_title().'</a></h3>';
+                echo '<h3 class="titulo-parque"><span><a href="'.get_permalink().'">'.get_the_title().'</a></span></h3>';
                 echo '<p>'.wp_trim_words(get_the_excerpt(), 25, '...').'</p>';
                 echo '</div>';
 

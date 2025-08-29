@@ -318,20 +318,10 @@ function mi_tema_hijo_cargar_codigo_personalizado() {
         }
 
         public function widget( $args, $instance ) {
+            $titulo_seccion = !empty($instance['titulo_seccion']) ? $instance['titulo_seccion'] : 'Publicaciones';
+            echo $args['before_title'] . esc_html($titulo_seccion) . $args['after_title'];
 
-            $titulo_seccion = isset( $instance['titulo_seccion'] ) ? $instance['titulo_seccion'] : '';
-
-            $this->widget_start( $args );
-
-            if ( ! empty( $titulo_seccion ) ) {
-                $this->widget_title( 
-                    $titulo_seccion, // título
-                    'latest',        // tipo (si tu helper lo pide)
-                    0                // categoría (si aplica)
-                );
-            }
-
-
+            echo '<div class="drc-publicaciones-container">';
             for ( $i = 1; $i <= 4; $i++ ) {
                 $enlace = isset( $instance[ "publi_enlace_{$i}" ] ) ? esc_url( $instance[ "publi_enlace_{$i}" ] ) : '';
                 $imagen = isset( $instance[ "publi_img_url_{$i}" ] ) ? esc_url( $instance[ "publi_img_url_{$i}" ] ) : '';
@@ -354,8 +344,7 @@ function mi_tema_hijo_cargar_codigo_personalizado() {
                     <?php
                 }
             }
-            
-            $this->widget_end( $args );
+            echo '</div>';
         }
     } 
 
