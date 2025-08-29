@@ -844,3 +844,21 @@ function shortcode_histo_publicaciones()
 add_shortcode('histo_publicaciones_ddc', 'shortcode_histo_publicaciones');
 
 /* *********************************************************************************** */
+
+
+/* ****************************************************************************** */ 
+/* FUNCIONES PARA AGREGAR WIDGET DE MAPA
+/* ****************************************************************************** */
+require_once get_stylesheet_directory() . '/inc/widgets/class-featured-display-map.php';
+
+function register_custom_widgets() {
+    register_widget( 'Map_Widget' );
+}
+add_action( 'widgets_init', 'register_custom_widgets' );
+
+// Cargar Leaflet
+function enqueue_leaflet_assets() {
+    wp_enqueue_style( 'leaflet-css', 'https://unpkg.com/leaflet/dist/leaflet.css' );
+    wp_enqueue_script( 'leaflet-js', 'https://unpkg.com/leaflet/dist/leaflet.js', array(), null, true );
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_leaflet_assets' );

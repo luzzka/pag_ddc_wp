@@ -1026,4 +1026,24 @@ li.default-menu {
 }
 
 
+/* ===================================================================
+   ESTILOS PARA EL MAPA
+   =================================================================== */
+.custom-map-widget {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 15px;
+}
 
+.map-locations {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.location-card {
+  background: #f9f9f9;
+  padding: 8px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
