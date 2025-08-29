@@ -931,9 +931,6 @@ function noticias_carrusel_shortcode() {
     return ob_get_clean();
 }
 add_shortcode('noticias_carrusel', 'noticias_carrusel_shortcode');
-
-
-
 function cargar_swiper() {
     wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
     wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), null, true);
@@ -945,7 +942,7 @@ function cargar_swiper() {
                 spaceBetween: 20,
                 loop: true,
                 speed: 1000, // transición más suave
-                effect: 'silde', // prueba también 'fade', 'coverflow', 'cards'
+                effect: 'slide', // prueba también 'fade', 'coverflow', 'cards'
                 autoplay: {
                     delay: 4000,
                     disableOnInteraction: false,
