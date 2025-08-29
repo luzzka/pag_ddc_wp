@@ -856,4 +856,107 @@ function shortcode_histo_publicaciones()
 
 add_shortcode('histo_publicaciones_ddc', 'shortcode_histo_publicaciones');
 
-/* *********************************************************************************** */
+
+
+// 🔹 Incluir CPT
+require get_stylesheet_directory() . '/parques-arqueologicos/parques-cpt.php';
+
+// 🔹 Incluir widget
+require get_stylesheet_directory() . '/parques-arqueologicos/class-drc-parques-widget.php';
+
+
+// 🔹 Registrar widget
+function drc_register_widgets() {
+    register_widget('DRC_Parques_Widget');
+}
+add_action('widgets_init', 'drc_register_widgets');
+// 🔹 Encolar CSS para front-end y widget (una sola vez)
+function drc_parques_frontend_assets() {
+    wp_enqueue_style(
+        'drc-parques-style',
+        get_stylesheet_directory_uri() . '/parques-arqueologicos/parques.css',
+        array(),
+        '1.0'
+    );
+}
+add_action('wp_enqueue_scripts', 'drc_parques_frontend_assets');
+// Usar plantilla single-parques desde subcarpeta
+// Usar plantilla single-parques desde subcarpeta
+add_filter('single_template', 'drc_single_parques_template');
+function drc_single_parques_template($single) {
+    global $post;
+
+    if ($post->post_type == 'parques') {
+        $template = get_stylesheet_directory() . '/parques-arqueologicos/single-parques.php';
+        if (file_exists($template)) {
+            return $template;
+        }
+    }
+    return $single;
+}
+
+/**
+ * functions.php del tema hijo
+ *
+ * Aquí se pueden agregar funciones personalizadas para el tema hijo,
+ * incluyendo la personalización de los enlaces sociales.
+ */
+
+// Evitar que la función exista antes de declararla
+if ( ! function_exists( 'colormag_social_links' ) ) :
+
+    /**
+     * Muestra los enlaces sociales incluyendo Intranet y Correo Institucional.
+     */
+    function colormag_social_links() {
+
+        // Salir si los iconos sociales no están activados
+        if ( 0 == get_theme_mod( 'colormag_enable_social_icons', 0 ) ) {
+            return;
+        }
+
+        $colormag_social_links = array(
+            'colormag_social_facebook'  => 'Facebook',
+            'colormag_social_twitter'   => 'Twitter',
+            'colormag_social_instagram' => 'Instagram',
+            'colormag_social_pinterest' => 'Pinterest',
+            'colormag_social_youtube'   => 'YouTube',
+        );
+        ?>
+
+        <div class="social-links">
+            <ul>
+                <?php
+                $colormag_links_output = '';
+
+                // Íconos estándar
+                foreach ( $colormag_social_links as $key => $value ) {
+                    $link = get_theme_mod( $key, '' );
+
+                    if ( ! empty( $link ) ) {
+                        $new_tab = '';
+                        if ( 1 == get_theme_mod( $key . '_checkbox', 0 ) ) {
+                            $new_tab = 'target="_blank"';
+                        }
+
+                        if ( 'Twitter' == $value ) {
+                            $colormag_links_output .= '<li><a href="' . esc_url( $link ) . '" ' . $new_tab . '><i class="fa-brands fa-x-twitter"></i></a></li>';
+                        } else {
+                            $colormag_links_output .= '<li><a href="' . esc_url( $link ) . '" ' . $new_tab . '><i class="fa fa-' . strtolower( $value ) . '"></i></a></li>';
+                        }
+                    }
+                }
+
+                // NUEVOS ICONOS
+                $colormag_links_output .= '<li><a href="https://www.culturacusco.gob.pe/portal-intranet/" target="_blank" title="Intranet Institucional"><i class="fa fa-network-wired" style="color:#0073e6;"></i></a></li>';
+                $colormag_links_output .= '<li><a href="https://mail.culturacusco.gob.pe/static/login/" target="_blank" title="Correo Institucional"><i class="fa fa-envelope" style="color:#d44638;"></i></a></li>';
+
+                // Mostrar todos los iconos
+                echo wp_kses_post( $colormag_links_output );
+                ?>
+            </ul>
+        </div><!-- .social-links -->
+        <?php
+    }
+
+endif;
