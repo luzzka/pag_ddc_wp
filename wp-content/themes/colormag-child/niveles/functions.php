@@ -872,7 +872,7 @@ function noticias_carrusel_shortcode() {
     ob_start(); ?>
     
     <div class="noticias-section">
-        <h2 class="cm-widget-title"> Noticias</h2>
+        <h3 class="cm-widget-title"><span> Noticias</span></h3>
 
         <?php if ($destacada->have_posts()): ?>
             <div class="noticia-destacada">
