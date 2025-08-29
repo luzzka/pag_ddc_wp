@@ -324,24 +324,11 @@ function mi_tema_hijo_cargar_codigo_personalizado() {
             $this->widget_start( $args );
 
             if ( ! empty( $titulo_seccion ) ) {
-                // Renderiza el h3 nativo de ColorMag pero lo capturamos
-                //ob_start();
                 $this->widget_title( 
                     $titulo_seccion, // título
                     'latest',        // tipo (si tu helper lo pide)
                     0                // categoría (si aplica)
                 );
-                $title_html = ob_get_clean();
-
-                // Link "ver más" (puedes parametrizarlo si quieres)
-                $link_html = '<a class="view-all-link" href="' . esc_url( home_url( '/publicaciones/' ) ) . '" target="_blank">Ver Publicaciones &raquo;</a>';
-
-                // Inserta el enlace antes del cierre del h3
-                if ( false !== strpos( $title_html, '</h3>' ) ) {
-                    $title_html = str_replace( '</h3>', $link_html . '</h3>', $title_html );
-                }
-
-                echo $title_html;
             }
 
 
