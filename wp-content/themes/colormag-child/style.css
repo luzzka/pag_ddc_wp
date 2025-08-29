@@ -44,11 +44,11 @@ section.accordion_publi:hover {
 
 /* Contenedor de cada publicación (la tarjeta) */
 .first-post.publi2 {
-    width: 24%; /* Mantenemos la distribución en 4 columnas */
-    margin: 0 0.5%;
+    width: 22.5%; /* Mantenemos la distribución en 4 columnas */
+    margin: 0 1.2%;
     border-radius: 8px; /* Esquinas más redondeadas para un look moderno */
     overflow: hidden; /* Muy importante para que la imagen no se salga al hacer zoom */
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.15);; /* Sombra sutil para dar profundidad */
+    box-shadow: 0px 8px 10px rgba(0,0,0,0.5); /* Sombra sutil para dar profundidad */
     transition: all 0.35s ease-in-out; /* Transición suave para todos los efectos */
     position: relative; /* Necesario para el efecto de superposición */
 }
@@ -67,15 +67,13 @@ section.accordion_publi:hover {
 /* 1. Al pasar el cursor sobre la tarjeta... */
 .first-post.publi2:hover {
     transform: translateY(-8px); /* La tarjeta se eleva ligeramente */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* La sombra se hace más pronunciada */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.85); /* La sombra se hace más pronunciada */
 }
 
-/* 2. ...la imagen dentro de la tarjeta hace zoom. */
 .first-post.publi2:hover img {
     transform: scale(1.08); /* Aumenta ligeramente el tamaño de la imagen */
 }
 
-/* 3. (Opcional) Añadir una superposición oscura para un toque extra */
 .first-post.publi2 a::after {
     content: ''; /* Elemento virtual necesario */
     position: absolute;
@@ -154,7 +152,7 @@ section.accordion_publi:hover {
 }
 
 .itemsubdir {
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.22);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex; 
   justify-content: center;
@@ -166,6 +164,7 @@ section.accordion_publi:hover {
 .itemsubdir:hover {
   transform: scale(1.05);
   box-shadow: 0px 6px 14px rgba(0,0,0,0.2);
+  border: 2px solid #800020;
 }
 
 /* estilos responsive */
@@ -913,7 +912,122 @@ li.default-menu {
     background: #a83246;
 }
 
+
+/* ===================================================================
+   ESTILOS PARA BARRA LATERAL DE ANUNCIOS
+   =================================================================== */
+
+.advertisement_300x250 .cm-advertisement-content {
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.22); 
+    overflow: hidden;
+    
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    
+    line-height: 0; 
+}
+
+.advertisement_300x250 .cm-advertisement-content:hover {
+    transform: scale(1.05);
+    border: 2px solid #800020;
+}
+
+.advertisement_300x250 .cm-advertisement-content img {
+    width: 100%; 
+    height: auto; 
+    display: block; 
+}
+/* Estilos de widgets que ya tenías, los mantenemos */
+.cm-secondary .widget,
+#cm-tertiary .widget {
+	margin-bottom: 20px;
+}
+
 #cm-secondary-p .cm-secondary {
     width: 100%;
 }
+
+/* ===================================================================
+   ESTILOS PARA EL TITULO
+   =================================================================== */
+.cm-widget-title,
+.cm-widget-title span {
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+    color: inherit !important;
+    border-radius: 0 !important;
+}
+
+.cm-widget-title {
+    padding-bottom: 2px !important;
+    margin-bottom: 34px !important;
+    display: block !important;
+    box-shadow: 0px 4px 4px -2px rgba(45, 55, 72, 0.3);
+    padding-left: 10px !important;
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* El texto del título (<span>) */
+.cm-widget-title span {
+  background: none !important;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem !important; /* Ligeramente más pequeño para un look más refinado */
+    font-weight: 600 !important;
+    color: #2d3748 !important;
+    text-transform: uppercase;
+    letter-spacing: 1.5px; /* Más espaciado para un look más "aireado" */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* ¡NUEVO! Creamos el icono del megáfono */
+.cm-widget-title span::before {
+    /* Código Unicode para el icono de megáfono en Font Awesome */
+    content: '\f0a1'; 
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900; /* Necesario para los iconos sólidos de Font Awesome */
+    
+    /* El icono hereda automáticamente el tamaño y color del texto, cumpliendo tu petición */
+    font-size: inherit;
+    color: inherit;
+
+    /* Espacio entre el icono y el texto */
+    margin-right: 10px;
+    
+    /* Pequeño ajuste para asegurar una alineación vertical perfecta */
+    vertical-align: middle;
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/*
+ * PASO 3: MANEJO DE EXCEPCIONES (Footer)
+ * En el footer oscuro, una sombra oscura no se ve. Usamos una sombra blanca sutil.
+*/
+.cm-footer-builder .cm-widget-title,
+.cm-footer-cols .cm-widget-title {
+    /* Sombra blanca muy sutil para que resalte sobre el fondo oscuro */
+    box-shadow: 0px 4px 4px -2px rgba(255, 255, 255, 0.15) !important;
+}
+
+.cm-footer-builder .cm-widget-title span,
+.cm-footer-cols .cm-widget-title span {
+    color: #ffffff !important; /* El texto se mantiene blanco */
+}
+
+/* Aplicamos el efecto al pasar el cursor sobre CUALQUIER parte del widget */
+.cm-widget-title:hover {
+    /*transform: translateY(-6px);*/
+    background-color: rgb(160, 0, 40);
+    
+}
+.cm-widget-title:hover span {
+    /* Hacemos que el fondo del span sea transparente para REVELAR el color rojo del padre */
+    background-color: transparent !important;
+    
+    /* Y hacemos que el texto y el icono (por herencia) se vuelvan blancos para ser legibles */
+    color: #ffffff !important;
+}
+
+
 
